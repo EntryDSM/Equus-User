@@ -1,7 +1,7 @@
-package hs.kr.equus.auth.global.error
+package hs.kr.equus.user.global.error
 
-import hs.kr.equus.auth.global.error.exception.EquusException
-import hs.kr.equus.auth.global.error.exception.ErrorCode
+import hs.kr.equus.user.global.error.exception.EquusException
+import hs.kr.equus.user.global.error.exception.ErrorCode
 import io.sentry.Sentry
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter

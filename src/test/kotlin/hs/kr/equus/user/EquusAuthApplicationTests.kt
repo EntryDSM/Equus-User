@@ -1,4 +1,4 @@
-package hs.kr.equus.auth
+package hs.kr.equus.user
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

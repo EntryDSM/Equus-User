@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "Equus-Auth"
+rootProject.name = "Equus-User"

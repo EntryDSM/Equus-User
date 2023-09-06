@@ -1,4 +1,4 @@
-package hs.kr.equus.auth.global.error.exception
+package hs.kr.equus.user.global.error.exception
 
 import java.lang.RuntimeException
 

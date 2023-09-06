@@ -1,4 +1,4 @@
-package hs.kr.equus.auth.global.error
+package hs.kr.equus.user.global.error
 
 data class ErrorResponse(
     val status: Int,

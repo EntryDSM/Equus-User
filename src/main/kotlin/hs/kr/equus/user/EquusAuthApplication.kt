@@ -1,4 +1,4 @@
-package hs.kr.equus.auth
+package hs.kr.equus.user
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
