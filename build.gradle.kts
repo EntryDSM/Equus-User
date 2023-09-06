@@ -40,6 +40,9 @@ dependencies {
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    // Logging
+    implementation("io.sentry:sentry-spring-boot-starter:6.2.1")
 }
 
 tasks.withType<KotlinCompile> {
