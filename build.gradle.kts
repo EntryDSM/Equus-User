@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.16-SNAPSHOT"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_VERSION
+    id("io.spring.dependency-management") version PluginVersions.DEPENDENCY_MANAGER_VERSION
+    kotlin("jvm") version PluginVersions.JVM_VERSION
+    kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN_VERSION
+    kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
 }
 
 group = "hs.kr.equus"
@@ -24,25 +24,24 @@ repositories {
 dependencies {
 
     // Database
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("com.mysql:mysql-connector-j")
+    implementation(Dependencies.SPRING_DATA_JPA)
+    runtimeOnly(Dependencies.MYSQL_CONNECTOR)
 
     // Web
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation(Dependencies.SPRING_WEB)
 
     // Security
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation(Dependencies.SPRING_SECURITY)
 
     // Kotlin
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation(Dependencies.JACKSON)
+    implementation(Dependencies.KOTLIN_REFLECT)
 
     // Test
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation(Dependencies.SPRING_TEST)
 
     // Logging
-    implementation("io.sentry:sentry-spring-boot-starter:6.2.1")
+    implementation(Dependencies.SENTRY)
 }
 
 tasks.withType<KotlinCompile> {
