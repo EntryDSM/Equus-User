@@ -32,7 +32,7 @@ class GlobalExceptionFilter: OncePerRequestFilter() {
 
     @Throws(IOException::class)
     private fun writerErrorCode(response: HttpServletResponse, errorCode: ErrorCode) {
-        val errorResponse = ErrorResponse(errorCode.status, errorCode.code, errorCode.message)
+        val errorResponse = ErrorResponse(errorCode.status, errorCode.code)
         response.status = errorCode.status
         response.characterEncoding = StandardCharsets.UTF_8.name()
         response.contentType = MediaType.APPLICATION_JSON_VALUE

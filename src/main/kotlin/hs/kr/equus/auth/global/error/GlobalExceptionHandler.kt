@@ -14,7 +14,7 @@ class GlobalExceptionHandler {
     fun handlingEquusException(e: EquusException): ResponseEntity<ErrorResponse> {
         val code = e.errorCode
         return ResponseEntity(
-            ErrorResponse(code.status, code.code, code.message),
+            ErrorResponse(code.status, code.message),
             HttpStatus.valueOf(code.status)
         )
     }
@@ -24,7 +24,6 @@ class GlobalExceptionHandler {
         return ResponseEntity(
             ErrorResponse(
                 400,
-                "COMMON-400",
                 e.bindingResult.allErrors[0].defaultMessage
             ), HttpStatus.BAD_REQUEST
         )
