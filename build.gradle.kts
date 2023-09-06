@@ -43,6 +43,9 @@ dependencies {
 
     // Logging
     implementation(Dependencies.SENTRY)
+
+    // Valid
+    implementation(Dependencies.SPRING_VALIDATION)
 }
 
 tasks.withType<KotlinCompile> {

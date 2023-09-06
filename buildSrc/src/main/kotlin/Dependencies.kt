@@ -25,4 +25,7 @@ object Dependencies {
 
     // sentry
     const val SENTRY = "io.sentry:sentry-spring-boot-starter:${DependencyVersions.SENTRY_VERSION}"
+
+    // validation
+    const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
 }
