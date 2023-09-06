@@ -28,4 +28,7 @@ object Dependencies {
 
     // validation
     const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
+
+    // gson
+    const val GSON = "com.google.code.gson:gson"
 }

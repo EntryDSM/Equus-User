@@ -46,6 +46,9 @@ dependencies {
 
     // Valid
     implementation(Dependencies.SPRING_VALIDATION)
+
+    // Gson
+    implementation(Dependencies.GSON)
 }
 
 tasks.withType<KotlinCompile> {
