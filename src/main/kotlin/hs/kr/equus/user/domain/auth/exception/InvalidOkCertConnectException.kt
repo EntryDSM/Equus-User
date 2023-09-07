@@ -4,5 +4,5 @@ import hs.kr.equus.user.global.error.exception.EquusException
 import hs.kr.equus.user.global.error.exception.ErrorCode
 
 object InvalidOkCertConnectException : EquusException(
-    ErrorCode.INVALID_OKCERT_CONNECTION,
+    ErrorCode.INVALID_OKCERT_CONNECTION
 )

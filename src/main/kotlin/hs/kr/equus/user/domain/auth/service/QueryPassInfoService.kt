@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class QueryPassInfoService(
     private val passInfoRepository: PassInfoRepository,
-    private val passUtil: PassUtil,
+    private val passUtil: PassUtil
 ) {
     companion object {
         private val RESULT_CODE = "RSLT_CD"

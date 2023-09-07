@@ -16,7 +16,7 @@ import javax.validation.Valid
 @RequestMapping("/user/verify")
 class PassInfoController(
     private val passPopupService: PassPopupService,
-    private val queryPassInfoService: QueryPassInfoService,
+    private val queryPassInfoService: QueryPassInfoService
 ) {
     @GetMapping("/info")
     fun getPassInfo(@RequestParam("mdl_tkn") token: String): QueryPassInfoResponse = queryPassInfoService.execute(token)
