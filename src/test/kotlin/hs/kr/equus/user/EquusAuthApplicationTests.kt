@@ -9,5 +9,4 @@ class EquusAuthApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }

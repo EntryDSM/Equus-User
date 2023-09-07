@@ -14,7 +14,7 @@ class PassPopupService(
     private val redirectUrlChecker: RedirectUrlChecker
 ) {
 
-    companion object{
+    companion object {
         private const val TARGET = "PROD"
     }
 
