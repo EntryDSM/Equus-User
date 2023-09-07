@@ -22,5 +22,5 @@ class PassInfoController(
     fun getPassInfo(@RequestParam("mdl_tkn") token: String): QueryPassInfoResponse = queryPassInfoService.execute(token)
 
     @PostMapping("/popup")
-    fun getPass(@RequestBody request: @Valid PassPopupRequest): String = passPopupService.execute(request)
+    fun popupPass(@RequestBody request: @Valid PassPopupRequest): String = passPopupService.execute(request)
 }
