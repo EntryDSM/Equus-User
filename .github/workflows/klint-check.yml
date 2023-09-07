@@ -4,6 +4,7 @@ on:
     pull_request:
         branches:
             - develop
+
 jobs:
     ktlint:
         name: Check Code Quality
@@ -11,11 +12,15 @@ jobs:
 
         steps:
             - name: Clone repo
-              uses: actions/checkout@master
+              uses: actions/checkout@v2
               with:
                   fetch-depth: 1
-            - name: ktlint
-              uses: ScaCap/action-ktlint@master
+
+            - name: Setup JDK
+              uses: actions/setup-java@v2
               with:
-                  github_token: ${{ secrets.ACCESS_GITHUB_TOKEN }}
-                  reporter: github-pr-check # Change reporter
+                  java-version: '11'
+
+            - name: Run ktlint
+              run: |
+                  ./gradlew ktlintCheck --daemon --parallel --configure-on-demand
