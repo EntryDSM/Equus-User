@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     id("org.springframework.boot") version PluginVersions.SPRING_BOOT_VERSION
@@ -48,7 +49,10 @@ dependencies {
     implementation(Dependencies.SPRING_VALIDATION)
 
     // Gson
-    implementation(Dependencies.GSON)
+    implementation(Dependencies.JSON)
+
+    // OkCert
+    implementation(files("$projectDir/${Dependencies.OKCERT_PATH}"))
 }
 
 tasks.withType<KotlinCompile> {
