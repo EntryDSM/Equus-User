@@ -31,8 +31,7 @@ class PassUtil {
         val reqJson = JSONObject()
         reqJson.put(MODEL_TOKEN, token)
         val reqStr = reqJson.toString()
-        var resultStr: String? = null
-        resultStr = try {
+        val resultStr: String? = try {
             okCert.callOkCert(TARGET, CP_CD, SVC_NAME, LICENSE, reqStr)
         } catch (e: OkCertException) {
             throw InvalidOkCertConnectException
