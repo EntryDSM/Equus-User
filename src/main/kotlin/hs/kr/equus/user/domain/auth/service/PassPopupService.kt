@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class PassPopupService(
-    private val redirectUrlChecker: RedirectUrlChecker
+    private val redirectUrlChecker: RedirectUrlChecker,
 ) {
 
     companion object {

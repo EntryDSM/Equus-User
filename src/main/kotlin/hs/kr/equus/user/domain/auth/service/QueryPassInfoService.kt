@@ -12,11 +12,9 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class QueryPassInfoService(
     private val passInfoRepository: PassInfoRepository,
-    private val passUtil: PassUtil
+    private val passUtil: PassUtil,
 ) {
-
     companion object {
-
         private val RESULT_CODE = "RSLT_CD"
 
         private val RESULT_NAME = "RSLT_NAME"
@@ -27,7 +25,7 @@ class QueryPassInfoService(
     }
 
     @Value("\${pass.exp}")
-    private var EXP: Long = 0L
+    private var exp: Long = 0L
 
     @Transactional
     fun execute(token: String?): QueryPassInfoResponse {
@@ -38,7 +36,7 @@ class QueryPassInfoService(
         }
         val name = resJson.getString(RESULT_NAME)
         val phoneNumber = resJson.getString(TEL_NO)
-        val passInfo: PassInfo = PassInfo(name, phoneNumber, EXP)
+        val passInfo: PassInfo = PassInfo(name, phoneNumber, exp)
         passInfoRepository.save(passInfo)
         return QueryPassInfoResponse(phoneNumber, name)
     }
