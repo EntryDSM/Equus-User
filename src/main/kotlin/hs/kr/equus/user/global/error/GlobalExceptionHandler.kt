@@ -25,7 +25,8 @@ class GlobalExceptionHandler {
             ErrorResponse(
                 400,
                 e.bindingResult.allErrors[0].defaultMessage
-            ), HttpStatus.BAD_REQUEST
+            ),
+            HttpStatus.BAD_REQUEST
         )
     }
 }
