@@ -53,6 +53,9 @@ dependencies {
 
     // OkCert
     implementation(files("$projectDir/${Dependencies.OKCERT_PATH}"))
+
+    // Jwt
+    implementation(Dependencies.JWT)
 }
 
 tasks.withType<KotlinCompile> {
