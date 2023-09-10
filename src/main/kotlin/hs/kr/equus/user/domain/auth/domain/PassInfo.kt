@@ -1,4 +1,4 @@
-package hs.kr.equus.user.domain.auth.entity
+package hs.kr.equus.user.domain.auth.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
