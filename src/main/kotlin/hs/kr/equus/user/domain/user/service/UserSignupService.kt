@@ -26,11 +26,11 @@ class UserSignupService(
         val telephoneNumber = userSignupRequest.telephoneNumber
         val password = passwordEncoder.encode(userSignupRequest.password)
 
-        if(userRepository.existsByTelephoneNumber(telephoneNumber)){
+        if (userRepository.existsByTelephoneNumber(telephoneNumber)) {
             throw UserAlreadyExistsException
         }
 
-        val passInfo = passInfoRepository.findByPhoneNumber(telephoneNumber).orElseThrow{ PassInfoNotFoundException }
+        val passInfo = passInfoRepository.findByPhoneNumber(telephoneNumber).orElseThrow { PassInfoNotFoundException }
 
         val user = User(
             id = null,
