@@ -7,7 +7,7 @@ import javax.persistence.*
 data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)
     val telephoneNumber: String,
@@ -22,5 +22,5 @@ data class User(
     val isStudent: Boolean,
 
     @Column(name = "entry_info_id", nullable = true)
-    val entryInfoId: Long
+    val entryInfoId: Long?
 ) : BaseTimeEntity()
