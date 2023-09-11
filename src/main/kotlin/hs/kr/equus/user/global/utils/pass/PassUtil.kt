@@ -21,10 +21,10 @@ class PassUtil {
         private val MODEL_TOKEN = "MDL_TKN"
     }
 
-    @Value("{pass.cp-cd}")
+    @Value("\${pass.cp-cd}")
     private lateinit var CP_CD: String
 
-    @Value("{pass.license}")
+    @Value("\${pass.license}")
     private lateinit var LICENSE: String
 
     fun getResponseJson(token: String?): JSONObject? {
