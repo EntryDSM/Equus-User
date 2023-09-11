@@ -17,5 +17,9 @@ enum class ErrorCode(
     INVALID_OKCERT_CONNECTION(500, "PASS_INFO-500-0", "Invalid OkCert Connection"),
 
     // Not Found
-    USER_NOT_FOUND(404, "USER404-0", "User Not Found")
+    USER_NOT_FOUND(404, "USER404-0", "User Not Found"),
+    PASS_INFO_NOT_FOUND(404, "PASS_INFO404-0", "Pass Info Not Found"),
+
+    // Conflict
+    USER_ALREADY_EXISTS(409, "USER409-0", "User Already Exists")
 }
