@@ -3,6 +3,8 @@ package hs.kr.equus.user.global.security.jwt
 import hs.kr.equus.user.domain.refreshtoken.domain.RefreshToken
 import hs.kr.equus.user.domain.refreshtoken.domain.repository.RefreshTokenRepository
 import hs.kr.equus.user.domain.user.domain.Role
+import hs.kr.equus.user.domain.user.domain.repository.UserRepository
+import hs.kr.equus.user.domain.user.exception.UserNotFoundException
 import hs.kr.equus.user.global.exception.ExpiredTokenException
 import hs.kr.equus.user.global.exception.InvalidTokenException
 import hs.kr.equus.user.global.security.auth.AuthDetailsService
@@ -19,18 +21,20 @@ import javax.servlet.http.HttpServletRequest
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
     private val authDetailsService: AuthDetailsService,
-    private val refreshTokenRepository: RefreshTokenRepository
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val userRepository: UserRepository
 ) {
     companion object {
         private const val ACCESS_KEY = "access_token"
         private const val REFRESH_KEY = "refresh_token"
     }
 
-    fun generateToken(id: String, role: String): TokenResponse {
-        val accessToken = generateToken(id, role, ACCESS_KEY, jwtProperties.accessExp)
-        val refreshToken = generateToken(id, role, REFRESH_KEY, jwtProperties.refreshExp)
+    fun generateToken(phoneNumber: String, role: String): TokenResponse {
+        val userId = getUserUUID(phoneNumber).toString()
+        val accessToken = generateToken(userId, role, ACCESS_KEY, jwtProperties.accessExp)
+        val refreshToken = generateToken(userId, role, REFRESH_KEY, jwtProperties.refreshExp)
         refreshTokenRepository.save(
-            RefreshToken(id, refreshToken, jwtProperties.refreshExp)
+            RefreshToken(userId, refreshToken, jwtProperties.refreshExp)
         )
         return TokenResponse(accessToken, refreshToken)
     }
@@ -86,4 +90,7 @@ class JwtTokenProvider(
             authDetailsService.loadUserByUsername(body.subject)
         }
     }
+
+    private fun getUserUUID(phoneNumber: String) =
+        userRepository.findByTelephoneNumber(phoneNumber).orElseThrow{ UserNotFoundException }.id
 }
