@@ -1,13 +1,13 @@
 package hs.kr.equus.user.domain.user.domain
 
 import hs.kr.equus.user.domain.BaseTimeEntity
+import hs.kr.equus.user.domain.BaseUUIDEntity
+import java.util.*
 import javax.persistence.*
 
 @Entity(name = "tbl_user")
-data class User(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
+ class User(
+    id: UUID?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)
     val telephoneNumber: String,
@@ -23,4 +23,4 @@ data class User(
 
     @Column(name = "entry_info_id", nullable = true)
     val entryInfoId: Long?
-) : BaseTimeEntity()
+) : BaseUUIDEntity(id)

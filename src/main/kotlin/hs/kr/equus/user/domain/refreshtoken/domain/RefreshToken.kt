@@ -6,7 +6,7 @@ import org.springframework.data.redis.core.index.Indexed
 import javax.persistence.Id
 
 @RedisHash
-data class RefreshToken(
+class RefreshToken(
     @Id
     val id: String,
 
