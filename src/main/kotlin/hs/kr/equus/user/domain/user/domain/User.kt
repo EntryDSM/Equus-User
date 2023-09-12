@@ -1,12 +1,12 @@
 package hs.kr.equus.user.domain.user.domain
 
-import hs.kr.equus.user.domain.BaseTimeEntity
 import hs.kr.equus.user.domain.BaseUUIDEntity
 import java.util.*
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
 
 @Entity(name = "tbl_user")
- class User(
+class User(
     id: UUID?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)
