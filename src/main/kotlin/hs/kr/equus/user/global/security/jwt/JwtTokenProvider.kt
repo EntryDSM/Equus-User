@@ -39,8 +39,8 @@ class JwtTokenProvider(
         return TokenResponse(accessToken, refreshToken)
     }
 
-    private fun generateToken(id: String, role: String, type: String, exp: Long): String {
-        return Jwts.builder()
+    private fun generateToken(id: String, role: String, type: String, exp: Long): String =
+        Jwts.builder()
             .setSubject(id)
             .setHeaderParam("typ", type)
             .claim("role", role)
@@ -48,18 +48,13 @@ class JwtTokenProvider(
             .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
             .setIssuedAt(Date())
             .compact()
-    }
 
-    fun resolveToken(request: HttpServletRequest): String? {
-        val bearer = request.getHeader(jwtProperties.header)
-        return if (
-            bearer != null && bearer.startsWith(jwtProperties.prefix) && bearer.length > jwtProperties.prefix.length + 1
-        ) {
-            bearer.substring(jwtProperties.prefix.length + 1)
-        } else {
-            null
+    fun resolveToken(request: HttpServletRequest): String? =
+        request.getHeader(jwtProperties.header)?.also {
+            if (it.startsWith(jwtProperties.prefix)) {
+                return it.substring(jwtProperties.prefix.length)
+            }
         }
-    }
 
     fun authentication(token: String): Authentication? {
         val body: Claims = getJws(token).body
