@@ -24,7 +24,7 @@ class User(
     @Column(name = "entry_info_id", nullable = true)
     val entryInfoId: Long?
 ) : BaseUUIDEntity(id) {
-    fun updatePassword(password: String) {
+    fun changePassword(password: String) {
         this.password = password
     }
 }

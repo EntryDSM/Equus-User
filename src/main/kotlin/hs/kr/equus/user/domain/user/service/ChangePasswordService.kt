@@ -21,7 +21,7 @@ class ChangePasswordService(
             ?.let { phoneNumber ->
                 userRepository.findByPhoneNumber(phoneNumber)
                     .orElseThrow { UserNotFoundException }
-                    .updatePassword(passwordEncoder.encode(changePasswordRequest.newPassword))
+                    .changePassword(passwordEncoder.encode(changePasswordRequest.newPassword))
             } ?: throw PassInfoNotFoundException
     }
 }
