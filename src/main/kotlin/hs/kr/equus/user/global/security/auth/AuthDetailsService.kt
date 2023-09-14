@@ -12,6 +12,6 @@ class AuthDetailsService(
 ) : UserDetailsService {
     override fun loadUserByUsername(telephoneNumber: String?): UserDetails {
         val user: User? = telephoneNumber?.let { userFacade.getUserByTelephoneNumber(it) }
-        return AuthDetails(user!!.telephoneNumber)
+        return AuthDetails(user!!.phoneNumber)
     }
 }

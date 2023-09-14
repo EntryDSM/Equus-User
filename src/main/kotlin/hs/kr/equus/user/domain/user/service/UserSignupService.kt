@@ -26,7 +26,7 @@ class UserSignupService(
         val telephoneNumber = userSignupRequest.telephoneNumber
         val password = passwordEncoder.encode(userSignupRequest.password)
 
-        if (userRepository.existsByTelephoneNumber(telephoneNumber)) {
+        if (userRepository.existsByPhoneNumber(telephoneNumber)) {
             throw UserAlreadyExistsException
         }
 
@@ -34,7 +34,7 @@ class UserSignupService(
 
         val user = User(
             id = null,
-            telephoneNumber = passInfo.phoneNumber,
+            phoneNumber = passInfo.phoneNumber,
             password = password,
             name = passInfo.name,
             isStudent = userSignupRequest.isStudent,
@@ -44,7 +44,7 @@ class UserSignupService(
         userRepository.save(user)
 
         return tokenProvider.generateToken(
-            user.telephoneNumber,
+            user.phoneNumber,
             Role.USER.toString()
         )
     }
