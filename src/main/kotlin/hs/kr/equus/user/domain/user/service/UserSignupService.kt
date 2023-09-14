@@ -23,14 +23,14 @@ class UserSignupService(
 
     @Transactional
     fun execute(userSignupRequest: UserSignupRequest): TokenResponse {
-        val telephoneNumber = userSignupRequest.telephoneNumber
+        val phoneNumber = userSignupRequest.phoneNumber
         val password = passwordEncoder.encode(userSignupRequest.password)
 
-        if (userRepository.existsByPhoneNumber(telephoneNumber)) {
+        if (userRepository.existsByPhoneNumber(phoneNumber)) {
             throw UserAlreadyExistsException
         }
 
-        val passInfo = passInfoRepository.findByPhoneNumber(telephoneNumber).orElseThrow { PassInfoNotFoundException }
+        val passInfo = passInfoRepository.findByPhoneNumber(phoneNumber).orElseThrow { PassInfoNotFoundException }
 
         val user = User(
             id = null,
