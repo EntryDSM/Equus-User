@@ -1,7 +1,7 @@
 package hs.kr.equus.user.domain.auth.service
 
-import hs.kr.equus.user.domain.auth.entity.PassInfo
-import hs.kr.equus.user.domain.auth.entity.repository.PassInfoRepository
+import hs.kr.equus.user.domain.auth.domain.PassInfo
+import hs.kr.equus.user.domain.auth.domain.repository.PassInfoRepository
 import hs.kr.equus.user.domain.auth.exception.InvalidPassException
 import hs.kr.equus.user.domain.auth.presentation.dto.resopnse.QueryPassInfoResponse
 import hs.kr.equus.user.global.utils.pass.PassUtil

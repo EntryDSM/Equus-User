@@ -34,4 +34,7 @@ object Dependencies {
 
     // OkCert3
     const val OKCERT_PATH = "src/main/webapp/WEB-INF/lib/OkCert3-java1.5-2.3.1.jar"
+
+    // Jwt
+    const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersions.JWT_VERSION}"
 }
