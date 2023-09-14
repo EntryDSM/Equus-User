@@ -11,6 +11,7 @@ enum class ErrorCode(
     UNAUTHENTICATED(401, "COMMON401-2", "UnAuthenticated"),
     INVALID_URL(401, "URL401-0", "Invalid Url"),
     INVALID_PASS(401, "PASS_INFO-401-0", "Invalid Pass"),
+    INVALID_USER_PASSWORD(401, "USER401-0", "Invalid User Password"),
 
     // Internal Server Error
     INTERNAL_SERVER_ERROR(500, "COMMON500-0", "Internal Server Error"),
