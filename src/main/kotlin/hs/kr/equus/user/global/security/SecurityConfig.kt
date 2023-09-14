@@ -32,6 +32,11 @@ class SecurityConfig {
             .permitAll()
             .antMatchers(HttpMethod.GET, "/user/verify/info")
             .permitAll()
+            .antMatchers(HttpMethod.POST, "/user/auth")
+            .permitAll()
+
+            .anyRequest()
+            .authenticated()
 
         return http.build()
     }
