@@ -1,23 +1,32 @@
 package hs.kr.equus.user.domain.user.presentation
 
+import hs.kr.equus.user.domain.user.presentation.dto.request.UserLoginRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
+import hs.kr.equus.user.domain.user.service.UserLoginService
 import hs.kr.equus.user.domain.user.service.UserSignupService
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RequestMapping("/user")
 @RestController
 class UserController(
-    private val userSignupService: UserSignupService
+    private val userSignupService: UserSignupService,
+    private val userLoginService: UserLoginService
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun signup(@RequestBody userSignupRequest: UserSignupRequest): TokenResponse {
-        return userSignupService.execute(userSignupRequest)
-    }
+    fun signup(
+        @RequestBody @Valid
+        userSignupRequest: UserSignupRequest
+    ): TokenResponse =
+        userSignupService.execute(userSignupRequest)
+
+    @PostMapping("/auth")
+    fun login(
+        @RequestBody @Valid
+        userLoginRequest: UserLoginRequest
+    ): TokenResponse =
+        userLoginService.execute(userLoginRequest)
 }

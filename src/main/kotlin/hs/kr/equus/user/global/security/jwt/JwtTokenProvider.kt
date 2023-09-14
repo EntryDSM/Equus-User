@@ -31,17 +31,26 @@ class JwtTokenProvider(
 
     fun generateToken(phoneNumber: String, role: String): TokenResponse {
         val userId = getUserUUID(phoneNumber).toString()
-        val accessToken = generateToken(userId, role, ACCESS_KEY, jwtProperties.accessExp)
-        val refreshToken = generateToken(userId, role, REFRESH_KEY, jwtProperties.refreshExp)
+        val accessToken = generateAccessToken(userId, role, ACCESS_KEY, jwtProperties.accessExp)
+        val refreshToken = generateRefreshToken(role, REFRESH_KEY, jwtProperties.refreshExp)
         refreshTokenRepository.save(
             RefreshToken(userId, refreshToken, jwtProperties.refreshExp)
         )
         return TokenResponse(accessToken, refreshToken)
     }
 
-    private fun generateToken(id: String, role: String, type: String, exp: Long): String =
+    private fun generateAccessToken(id: String, role: String, type: String, exp: Long): String =
         Jwts.builder()
             .setSubject(id)
+            .setHeaderParam("typ", type)
+            .claim("role", role)
+            .signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
+            .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
+            .setIssuedAt(Date())
+            .compact()
+
+    private fun generateRefreshToken(role: String, type: String, exp: Long): String =
+        Jwts.builder()
             .setHeaderParam("typ", type)
             .claim("role", role)
             .signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
