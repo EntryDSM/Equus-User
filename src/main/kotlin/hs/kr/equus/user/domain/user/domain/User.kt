@@ -10,10 +10,10 @@ class User(
     id: UUID?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)
-    val telephoneNumber: String,
+    val phoneNumber: String,
 
     @Column(columnDefinition = "char(60)", nullable = false)
-    val password: String,
+    var password: String,
 
     @Column(columnDefinition = "char(5)", nullable = false)
     val name: String,
@@ -23,4 +23,8 @@ class User(
 
     @Column(name = "entry_info_id", nullable = true)
     val entryInfoId: Long?
-) : BaseUUIDEntity(id)
+) : BaseUUIDEntity(id) {
+    fun updatePassword(password: String) {
+        this.password = password
+    }
+}
