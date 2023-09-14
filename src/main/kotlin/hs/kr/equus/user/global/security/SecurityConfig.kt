@@ -34,7 +34,6 @@ class SecurityConfig {
             .permitAll()
             .antMatchers(HttpMethod.POST, "/user/auth")
             .permitAll()
-
             .anyRequest()
             .authenticated()
 
