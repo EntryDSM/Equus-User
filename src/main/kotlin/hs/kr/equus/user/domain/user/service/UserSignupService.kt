@@ -12,6 +12,7 @@ import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class UserSignupService(
@@ -33,7 +34,7 @@ class UserSignupService(
         val passInfo = passInfoRepository.findByPhoneNumber(phoneNumber).orElseThrow { PassInfoNotFoundException }
 
         val user = User(
-            id = null,
+            id = UUID(0, 0),
             phoneNumber = passInfo.phoneNumber,
             password = password,
             name = passInfo.name,
