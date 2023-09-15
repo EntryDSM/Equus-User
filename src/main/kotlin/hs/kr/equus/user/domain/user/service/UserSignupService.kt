@@ -39,7 +39,7 @@ class UserSignupService(
             password = password,
             name = passInfo.name,
             isStudent = userSignupRequest.isStudent,
-            entryInfoId = null
+            receiptCode = null
         )
 
         userRepository.save(user)
