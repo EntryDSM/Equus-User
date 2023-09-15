@@ -21,7 +21,7 @@ class User(
     @Column(columnDefinition = "bit(1) default 1", nullable = false)
     val isStudent: Boolean,
 
-    @Column(name = "entry_info_id", nullable = true)
+    @Column(name = "receipt_code", nullable = true)
     val receiptCode: Long?
 ) : BaseUUIDEntity(id) {
     fun changePassword(password: String) {
