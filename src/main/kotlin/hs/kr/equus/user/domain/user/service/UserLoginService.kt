@@ -17,13 +17,13 @@ class UserLoginService(
     private val userRepository: UserRepository
 ) {
     fun execute(userLoginRequest: UserLoginRequest): TokenResponse {
-        val user = userRepository.findByTelephoneNumber(userLoginRequest.phoneNumber)
+        val user = userRepository.findByPhoneNumber(userLoginRequest.phoneNumber)
             .orElseThrow { UserNotFoundException }
 
         if (!passwordEncoder.matches(userLoginRequest.password, user.password)) {
             throw PasswordNotValidException
         }
 
-        return jwtTokenProvider.generateToken(user.telephoneNumber, Role.USER.toString())
+        return jwtTokenProvider.generateToken(user.phoneNumber, Role.USER.toString())
     }
 }

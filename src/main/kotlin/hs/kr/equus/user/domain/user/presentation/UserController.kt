@@ -1,7 +1,9 @@
 package hs.kr.equus.user.domain.user.presentation
 
+import hs.kr.equus.user.domain.user.presentation.dto.request.ChangePasswordRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserLoginRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
+import hs.kr.equus.user.domain.user.service.ChangePasswordService
 import hs.kr.equus.user.domain.user.service.UserLoginService
 import hs.kr.equus.user.domain.user.service.UserSignupService
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
@@ -13,7 +15,8 @@ import javax.validation.Valid
 @RestController
 class UserController(
     private val userSignupService: UserSignupService,
-    private val userLoginService: UserLoginService
+    private val userLoginService: UserLoginService,
+    private val changePasswordService: ChangePasswordService
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,4 +32,11 @@ class UserController(
         userLoginRequest: UserLoginRequest
     ): TokenResponse =
         userLoginService.execute(userLoginRequest)
+
+    @PatchMapping("/password")
+    fun changePassword(
+        @RequestBody @Valid
+        changePasswordRequest: ChangePasswordRequest
+    ) =
+        changePasswordService.execute(changePasswordRequest)
 }

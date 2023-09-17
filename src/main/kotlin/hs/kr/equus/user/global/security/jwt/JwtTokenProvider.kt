@@ -96,5 +96,5 @@ class JwtTokenProvider(
     }
 
     private fun getUserUUID(phoneNumber: String) =
-        userRepository.findByTelephoneNumber(phoneNumber).orElseThrow { UserNotFoundException }.id
+        userRepository.findByPhoneNumber(phoneNumber).orElseThrow { UserNotFoundException }.id
 }

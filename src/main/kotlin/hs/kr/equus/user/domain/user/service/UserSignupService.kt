@@ -12,6 +12,7 @@ import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class UserSignupService(
@@ -23,28 +24,28 @@ class UserSignupService(
 
     @Transactional
     fun execute(userSignupRequest: UserSignupRequest): TokenResponse {
-        val telephoneNumber = userSignupRequest.telephoneNumber
+        val phoneNumber = userSignupRequest.phoneNumber
         val password = passwordEncoder.encode(userSignupRequest.password)
 
-        if (userRepository.existsByTelephoneNumber(telephoneNumber)) {
+        if (userRepository.existsByPhoneNumber(phoneNumber)) {
             throw UserAlreadyExistsException
         }
 
-        val passInfo = passInfoRepository.findByPhoneNumber(telephoneNumber).orElseThrow { PassInfoNotFoundException }
+        val passInfo = passInfoRepository.findByPhoneNumber(phoneNumber).orElseThrow { PassInfoNotFoundException }
 
         val user = User(
-            id = null,
-            telephoneNumber = passInfo.phoneNumber,
+            id = UUID(0, 0),
+            phoneNumber = passInfo.phoneNumber,
             password = password,
             name = passInfo.name,
             isStudent = userSignupRequest.isStudent,
-            entryInfoId = null
+            receiptCode = null
         )
 
         userRepository.save(user)
 
         return tokenProvider.generateToken(
-            user.telephoneNumber,
+            user.phoneNumber,
             Role.USER.toString()
         )
     }

@@ -6,4 +6,5 @@ import java.util.*
 
 interface PassInfoRepository : CrudRepository<PassInfo, String> {
     fun findByPhoneNumber(phoneNumber: String): Optional<PassInfo>
+    fun existsByPhoneNumber(phoneNumber: String): Boolean
 }
