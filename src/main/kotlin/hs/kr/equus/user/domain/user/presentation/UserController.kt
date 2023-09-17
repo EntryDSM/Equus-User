@@ -6,6 +6,7 @@ import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
 import hs.kr.equus.user.domain.user.service.ChangePasswordService
 import hs.kr.equus.user.domain.user.service.UserLoginService
 import hs.kr.equus.user.domain.user.service.UserSignupService
+import hs.kr.equus.user.domain.user.service.UserTokenRefreshService
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -16,7 +17,8 @@ import javax.validation.Valid
 class UserController(
     private val userSignupService: UserSignupService,
     private val userLoginService: UserLoginService,
-    private val changePasswordService: ChangePasswordService
+    private val changePasswordService: ChangePasswordService,
+    private val userTokenRefreshService: UserTokenRefreshService
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -39,4 +41,8 @@ class UserController(
         changePasswordRequest: ChangePasswordRequest
     ) =
         changePasswordService.execute(changePasswordRequest)
+
+    @PutMapping("/auth")
+    fun tokenRefresh(@RequestHeader("X-Refresh-Token") refreshToken: String): TokenResponse =
+        userTokenRefreshService.execute(refreshToken)
 }

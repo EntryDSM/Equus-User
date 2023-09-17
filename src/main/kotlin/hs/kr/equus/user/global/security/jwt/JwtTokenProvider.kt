@@ -4,7 +4,6 @@ import hs.kr.equus.user.domain.refreshtoken.domain.RefreshToken
 import hs.kr.equus.user.domain.refreshtoken.domain.repository.RefreshTokenRepository
 import hs.kr.equus.user.domain.user.domain.Role
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
-import hs.kr.equus.user.domain.user.exception.UserNotFoundException
 import hs.kr.equus.user.global.exception.ExpiredTokenException
 import hs.kr.equus.user.global.exception.InvalidTokenException
 import hs.kr.equus.user.global.security.auth.AuthDetailsService
@@ -29,8 +28,23 @@ class JwtTokenProvider(
         private const val REFRESH_KEY = "refresh_token"
     }
 
-    fun generateToken(phoneNumber: String, role: String): TokenResponse {
-        val userId = getUserUUID(phoneNumber).toString()
+    fun reIssue(refreshToken: String): TokenResponse {
+        if (isNotRefreshToken(refreshToken)) {
+            throw InvalidTokenException
+        }
+
+        refreshTokenRepository.findByToken(refreshToken)
+            ?.let { token ->
+                val id = token.id
+                val role = getRole(token.token)
+
+                val tokenResponse = generateToken(id, role)
+                token.update(tokenResponse.refreshToken, jwtProperties.refreshExp)
+                return TokenResponse(tokenResponse.accessToken, tokenResponse.refreshToken)
+            } ?: throw InvalidTokenException
+    }
+
+    fun generateToken(userId: String, role: String): TokenResponse {
         val accessToken = generateAccessToken(userId, role, ACCESS_KEY, jwtProperties.accessExp)
         val refreshToken = generateRefreshToken(role, REFRESH_KEY, jwtProperties.refreshExp)
         refreshTokenRepository.save(
@@ -82,9 +96,11 @@ class JwtTokenProvider(
         }
     }
 
-    fun isNotRefreshToken(token: String?): Boolean {
+    private fun isNotRefreshToken(token: String?): Boolean {
         return REFRESH_KEY != getJws(token!!).header["typ"].toString()
     }
+
+    private fun getRole(token: String) = getJws(token).body["role"].toString()
 
     private fun getDetails(body: Claims): UserDetails {
         return if (Role.USER.toString() == body["role"].toString()) {
@@ -94,7 +110,4 @@ class JwtTokenProvider(
             authDetailsService.loadUserByUsername(body.subject)
         }
     }
-
-    private fun getUserUUID(phoneNumber: String) =
-        userRepository.findByPhoneNumber(phoneNumber).orElseThrow { UserNotFoundException }.id
 }
