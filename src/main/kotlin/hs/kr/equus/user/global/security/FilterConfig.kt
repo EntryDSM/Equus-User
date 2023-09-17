@@ -14,14 +14,14 @@ import org.springframework.stereotype.Component
 @Component
 class FilterConfig(
     private val jwtTokenProvider: JwtTokenProvider,
-    private val objectMapper: ObjectMapper,
-    private val jwtProperties: JwtProperties
+    private val jwtProperties: JwtProperties,
+    private val objectMapper: ObjectMapper
 ) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
     override fun configure(builder: HttpSecurity) {
         builder.addFilterBefore(
             JwtFilter(jwtProperties, jwtTokenProvider),
             UsernamePasswordAuthenticationFilter::class.java
         )
-        builder.addFilterBefore(GlobalExceptionFilter(), JwtFilter::class.java)
+        builder.addFilterBefore(GlobalExceptionFilter(objectMapper), JwtFilter::class.java)
     }
 }

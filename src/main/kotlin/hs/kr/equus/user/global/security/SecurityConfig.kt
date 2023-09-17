@@ -1,5 +1,8 @@
 package hs.kr.equus.user.global.security
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import hs.kr.equus.user.global.security.jwt.JwtProperties
+import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -10,7 +13,11 @@ import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsUtils
 
 @Configuration
-class SecurityConfig {
+class SecurityConfig(
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val jwtProperties: JwtProperties,
+    private val objectMapper: ObjectMapper
+) {
 
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -36,6 +43,9 @@ class SecurityConfig {
             .permitAll()
             .anyRequest()
             .authenticated()
+
+        http
+            .apply(FilterConfig(jwtTokenProvider, jwtProperties, objectMapper))
 
         return http.build()
     }
