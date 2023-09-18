@@ -29,7 +29,7 @@ class JwtTokenProvider(
     }
 
     fun reIssue(refreshToken: String): TokenResponse {
-        if (isNotRefreshToken(refreshToken)) {
+        if (!isRefreshToken(refreshToken)) {
             throw InvalidTokenException
         }
 
@@ -81,7 +81,7 @@ class JwtTokenProvider(
 
     fun authentication(token: String): Authentication? {
         val body: Claims = getJws(token).body
-        if (!isNotRefreshToken(token)) throw InvalidTokenException
+        if (!isRefreshToken(token)) throw InvalidTokenException
         val userDetails: UserDetails = getDetails(body)
         return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
     }
@@ -96,8 +96,8 @@ class JwtTokenProvider(
         }
     }
 
-    private fun isNotRefreshToken(token: String?): Boolean {
-        return REFRESH_KEY != getJws(token!!).header["typ"].toString()
+    private fun isRefreshToken(token: String?): Boolean {
+        return REFRESH_KEY == getJws(token!!).header["typ"].toString()
     }
 
     private fun getRole(token: String) = getJws(token).body["role"].toString()
