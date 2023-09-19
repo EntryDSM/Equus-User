@@ -24,6 +24,6 @@ class UserLoginService(
             throw PasswordNotValidException
         }
 
-        return jwtTokenProvider.generateToken(user.phoneNumber, Role.USER.toString())
+        return jwtTokenProvider.generateToken(user.id.toString(), Role.USER.toString())
     }
 }

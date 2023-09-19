@@ -5,7 +5,7 @@ enum class ErrorCode(
     val message: String
 ) {
     // UnAuthorization
-    INVALID_TOKEN(401,"Invalid Token"),
+    INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
     UNAUTHENTICATED(401, "UnAuthenticated"),
     INVALID_URL(401, "Invalid Url"),
