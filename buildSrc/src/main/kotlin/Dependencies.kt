@@ -37,4 +37,7 @@ object Dependencies {
 
     // Jwt
     const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersions.JWT_VERSION}"
+
+    // Kafka
+    const val KAFKA = "org.springframework.kafka:spring-kafka"
 }
