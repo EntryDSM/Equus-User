@@ -34,3 +34,6 @@ auth:
         refreshExp: ${JWT_REFRESH_EXP:3600}
         header: ${JWT_HEADER:Authorization}
         prefix: ${JWT_PREFIX:Bearer}
+
+kafka:
+    serverAddress: ${KAFKA_SERVER_ADDRESS:localhost:9092}
