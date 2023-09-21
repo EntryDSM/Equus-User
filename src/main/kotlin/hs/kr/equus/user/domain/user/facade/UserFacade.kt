@@ -11,16 +11,12 @@ import java.util.*
 class UserFacade(
     private val userRepository: UserRepository
 ) {
-    fun getCurrentUser(): User? {
+    fun getCurrentUser(): User {
         val userId = SecurityContextHolder.getContext().authentication.name
         return userRepository.findById(UUID.fromString(userId)).orElseThrow { UserNotFoundException }
     }
 
-    fun getUserByPhoneNumber(phoneNumber: String): User? {
+    fun getUserByPhoneNumber(phoneNumber: String): User {
         return userRepository.findByPhoneNumber(phoneNumber).orElseThrow { UserNotFoundException }
-    }
-
-    fun getUserByUserId(id: String): User? {
-        return userRepository.findById(UUID.fromString(id)).orElseThrow { UserNotFoundException }
     }
 }

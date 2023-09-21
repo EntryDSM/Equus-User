@@ -8,4 +8,5 @@ interface UserRepository : JpaRepository<User, UUID> {
     fun findByPhoneNumber(phoneNumber: String): Optional<User>
 
     fun existsByPhoneNumber(phoneNumber: String): Boolean
+    fun deleteById(id: UUID?)
 }
