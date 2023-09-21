@@ -5,6 +5,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
 @ConfigurationProperties("kafka")
-class KafkaProperty (
+class KafkaProperty(
     val serverAddress: String
 )

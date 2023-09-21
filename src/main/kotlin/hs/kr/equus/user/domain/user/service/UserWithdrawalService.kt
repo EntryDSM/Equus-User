@@ -15,8 +15,8 @@ class UserWithdrawalService(
     private val userRepository: UserRepository
 ) {
     @Transactional
-    fun execute(){
-        val user = userFacade.getCurrentUser();
+    fun execute() {
+        val user = userFacade.getCurrentUser()
         userRepository.deleteById(user.id)
         deleteUserKafkaTemplate.send(KafkaTopics.DELETE_USER, DeleteUserEventRequest(user.id))
     }
