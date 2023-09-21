@@ -2,7 +2,7 @@ package hs.kr.equus.user.global.security.jwt
 
 import hs.kr.equus.user.domain.refreshtoken.domain.RefreshToken
 import hs.kr.equus.user.domain.refreshtoken.domain.repository.RefreshTokenRepository
-import hs.kr.equus.user.domain.user.domain.Role
+import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.global.exception.ExpiredTokenException
 import hs.kr.equus.user.global.exception.InvalidTokenException
@@ -103,7 +103,7 @@ class JwtTokenProvider(
     private fun getRole(token: String) = getJws(token).body["role"].toString()
 
     private fun getDetails(body: Claims): UserDetails {
-        return if (Role.USER.toString() == body["role"].toString()) {
+        return if (UserRole.USER.toString() == body["role"].toString()) {
             authDetailsService.loadUserByUsername(body.subject)
         } else {
             // 어드민 구현 후 추가 예정

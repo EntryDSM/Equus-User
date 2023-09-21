@@ -2,7 +2,7 @@ package hs.kr.equus.user.domain.user.service
 
 import hs.kr.equus.user.domain.auth.domain.repository.PassInfoRepository
 import hs.kr.equus.user.domain.auth.exception.PassInfoNotFoundException
-import hs.kr.equus.user.domain.user.domain.Role
+import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.User
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.UserAlreadyExistsException
@@ -46,7 +46,7 @@ class UserSignupService(
 
         return tokenProvider.generateToken(
             user.phoneNumber,
-            Role.USER.toString()
+            UserRole.USER.toString()
         )
     }
 }

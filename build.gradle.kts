@@ -56,6 +56,9 @@ dependencies {
 
     // Jwt
     implementation(Dependencies.JWT)
+
+    // Kafka
+    implementation(Dependencies.KAFKA)
 }
 
 tasks.withType<KotlinCompile> {

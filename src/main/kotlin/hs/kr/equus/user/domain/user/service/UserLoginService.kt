@@ -1,6 +1,6 @@
 package hs.kr.equus.user.domain.user.service
 
-import hs.kr.equus.user.domain.user.domain.Role
+import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
 import hs.kr.equus.user.domain.user.exception.UserNotFoundException
@@ -24,6 +24,6 @@ class UserLoginService(
             throw PasswordNotValidException
         }
 
-        return jwtTokenProvider.generateToken(user.id.toString(), Role.USER.toString())
+        return jwtTokenProvider.generateToken(user.id.toString(), UserRole.USER.toString())
     }
 }
