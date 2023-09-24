@@ -6,7 +6,7 @@ import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity(name = "tbl_user")
-class User(
+class UserJpaEntity(
     id: UUID?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)
@@ -22,7 +22,7 @@ class User(
     val isStudent: Boolean,
 
     @Column(name = "receipt_code", nullable = true)
-    val receiptCode: Long?
+    val receiptCode: UUID?
 ) : BaseUUIDEntity(id) {
     fun changePassword(password: String) {
         this.password = password

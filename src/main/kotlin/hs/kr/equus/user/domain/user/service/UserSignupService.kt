@@ -3,7 +3,7 @@ package hs.kr.equus.user.domain.user.service
 import hs.kr.equus.user.domain.auth.domain.repository.PassInfoRepository
 import hs.kr.equus.user.domain.auth.exception.PassInfoNotFoundException
 import hs.kr.equus.user.domain.user.domain.UserRole
-import hs.kr.equus.user.domain.user.domain.User
+import hs.kr.equus.user.domain.user.domain.UserJpaEntity
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.UserAlreadyExistsException
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
@@ -21,7 +21,6 @@ class UserSignupService(
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: JwtTokenProvider
 ) {
-
     @Transactional
     fun execute(userSignupRequest: UserSignupRequest): TokenResponse {
         val phoneNumber = userSignupRequest.phoneNumber
@@ -33,7 +32,7 @@ class UserSignupService(
 
         val passInfo = passInfoRepository.findByPhoneNumber(phoneNumber).orElseThrow { PassInfoNotFoundException }
 
-        val user = User(
+        val user = UserJpaEntity(
             id = UUID(0, 0),
             phoneNumber = passInfo.phoneNumber,
             password = password,
