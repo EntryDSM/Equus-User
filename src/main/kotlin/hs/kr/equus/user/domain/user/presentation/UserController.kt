@@ -51,7 +51,7 @@ class UserController(
     fun withdrawal() = userWithdrawalService.execute()
 
     @GetMapping
-    fun findUserByUUID(@RequestParam("userId") userId: UUID) : User{
+    fun findUserByUUID(@RequestParam("userId") userId: UUID): User {
         return queryUserByUUID.execute(userId)
     }
 }
