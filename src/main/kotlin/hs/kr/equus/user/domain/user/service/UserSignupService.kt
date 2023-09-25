@@ -21,7 +21,6 @@ class UserSignupService(
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: JwtTokenProvider
 ) {
-
     @Transactional
     fun execute(userSignupRequest: UserSignupRequest): TokenResponse {
         val phoneNumber = userSignupRequest.phoneNumber
@@ -34,7 +33,7 @@ class UserSignupService(
         val passInfo = passInfoRepository.findByPhoneNumber(phoneNumber).orElseThrow { PassInfoNotFoundException }
 
         val user = User(
-            id = UUID(0, 0),
+            id = null,
             phoneNumber = passInfo.phoneNumber,
             password = password,
             name = passInfo.name,

@@ -22,7 +22,7 @@ class User(
     val isStudent: Boolean,
 
     @Column(name = "receipt_code", nullable = true)
-    val receiptCode: Long?
+    val receiptCode: UUID?
 ) : BaseUUIDEntity(id) {
     fun changePassword(password: String) {
         this.password = password

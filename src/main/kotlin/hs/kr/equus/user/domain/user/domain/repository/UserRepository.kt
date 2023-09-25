@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
 interface UserRepository : JpaRepository<User, UUID> {
-    fun findByPhoneNumber(phoneNumber: String): Optional<User>
-
+    fun findByPhoneNumber(phoneNumber: String): User?
     fun existsByPhoneNumber(phoneNumber: String): Boolean
     fun deleteById(id: UUID?)
 }

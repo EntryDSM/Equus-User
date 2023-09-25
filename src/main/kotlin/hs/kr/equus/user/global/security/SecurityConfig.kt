@@ -38,6 +38,8 @@ class SecurityConfig(
             .permitAll()
             .antMatchers(HttpMethod.PUT, "/user/auth")
             .permitAll()
+            .antMatchers(HttpMethod.GET, "/user")
+            .hasRole("ADMIN")
             .anyRequest()
             .authenticated()
 

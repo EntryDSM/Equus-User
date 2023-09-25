@@ -16,7 +16,6 @@ class UserFacade(
         return userRepository.findById(UUID.fromString(userId)).orElseThrow { UserNotFoundException }
     }
 
-    fun getUserByPhoneNumber(phoneNumber: String): User {
-        return userRepository.findByPhoneNumber(phoneNumber).orElseThrow { UserNotFoundException }
-    }
+    fun getUserByPhoneNumber(phoneNumber: String): User =
+        userRepository.findByPhoneNumber(phoneNumber) ?: throw UserNotFoundException
 }
