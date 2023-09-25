@@ -1,9 +1,9 @@
 package hs.kr.equus.user.domain.user.presentation
 
-import hs.kr.equus.user.domain.user.model.User
 import hs.kr.equus.user.domain.user.presentation.dto.request.ChangePasswordRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserLoginRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
+import hs.kr.equus.user.domain.user.presentation.dto.response.UserResponse
 import hs.kr.equus.user.domain.user.service.*
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.http.HttpStatus
@@ -19,7 +19,7 @@ class UserController(
     private val changePasswordService: ChangePasswordService,
     private val userTokenRefreshService: UserTokenRefreshService,
     private val userWithdrawalService: UserWithdrawalService,
-    private val queryUserByUUID: QueryUserByUUID
+    private val queryUserByUUIDService: QueryUserByUUIDService
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,7 +51,7 @@ class UserController(
     fun withdrawal() = userWithdrawalService.execute()
 
     @GetMapping
-    fun findUserByUUID(@RequestParam("userId") userId: UUID): User {
-        return queryUserByUUID.execute(userId)
+    fun findUserByUUID(@RequestParam("userId") userId: UUID): UserResponse {
+        return queryUserByUUIDService.execute(userId)
     }
 }
