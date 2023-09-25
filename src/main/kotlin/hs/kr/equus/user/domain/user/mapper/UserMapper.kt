@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserMapper {
-    fun toDomain(user: UserJpaEntity): User {
-        return User(
-            user.id,
-            user.phoneNumber,
-            user.name,
-            user.isStudent,
-            user.receiptCode
+    fun toDomain(user: UserJpaEntity) = user.run {
+        User(
+            id = id,
+            phoneNumber = phoneNumber,
+            name = name,
+            isStudent = isStudent,
+            receiptCode = receiptCode
         )
     }
 }
