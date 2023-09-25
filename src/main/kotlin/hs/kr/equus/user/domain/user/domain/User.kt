@@ -6,7 +6,7 @@ import javax.persistence.Column
 import javax.persistence.Entity
 
 @Entity(name = "tbl_user")
-class UserJpaEntity(
+class User(
     id: UUID?,
 
     @Column(columnDefinition = "char(11)", nullable = false, unique = true)

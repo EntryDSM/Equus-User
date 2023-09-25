@@ -1,8 +1,8 @@
-package hs.kr.equus.user.domain.user.model
+package hs.kr.equus.user.domain.user.presentation.dto.response
 
 import java.util.UUID
 
-data class User(
+data class UserResponse(
     val id: UUID?,
     val phoneNumber: String,
     val name: String,
