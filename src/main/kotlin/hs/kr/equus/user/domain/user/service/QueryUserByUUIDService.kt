@@ -16,7 +16,7 @@ class QueryUserByUUIDService(
     fun execute(userId: UUID): UserResponse {
         val user = userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException
         return UserResponse(
-            id = user.id,
+            id = user.id!!,
             phoneNumber = user.phoneNumber,
             name = user.name,
             isStudent = user.isStudent,
