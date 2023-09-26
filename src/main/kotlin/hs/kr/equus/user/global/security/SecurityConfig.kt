@@ -39,7 +39,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PUT, "/user/auth")
             .permitAll()
             .antMatchers(HttpMethod.GET, "/user")
-            .hasRole("ADMIN")
+            .hasRole("ROOT")
             .anyRequest()
             .authenticated()
 

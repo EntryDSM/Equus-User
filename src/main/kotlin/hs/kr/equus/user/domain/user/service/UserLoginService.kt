@@ -1,5 +1,6 @@
 package hs.kr.equus.user.domain.user.service
 
+import hs.kr.equus.user.domain.user.domain.User
 import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
@@ -17,8 +18,7 @@ class UserLoginService(
     private val userRepository: UserRepository
 ) {
     fun execute(userLoginRequest: UserLoginRequest): TokenResponse {
-        val user = userRepository.findByPhoneNumber(userLoginRequest.phoneNumber)
-            .orElseThrow { UserNotFoundException }
+        val user = userRepository.findByPhoneNumber(userLoginRequest.phoneNumber) ?: throw UserNotFoundException
 
         if (!passwordEncoder.matches(userLoginRequest.password, user.password)) {
             throw PasswordNotValidException
