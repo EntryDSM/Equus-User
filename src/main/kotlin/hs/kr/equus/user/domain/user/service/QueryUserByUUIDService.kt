@@ -19,7 +19,7 @@ class QueryUserByUUIDService(
             id = user.id!!,
             phoneNumber = user.phoneNumber,
             name = user.name,
-            isStudent = user.isParent,
+            isStudent = user.isStudent,
             receiptCode = user.receiptCode
         )
     }
