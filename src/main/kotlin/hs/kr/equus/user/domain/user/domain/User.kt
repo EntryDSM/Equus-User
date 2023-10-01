@@ -18,8 +18,8 @@ class User(
     @Column(columnDefinition = "char(5)", nullable = false)
     val name: String,
 
-    @Column(columnDefinition = "bit(1) default 1", nullable = false)
-    val isStudent: Boolean,
+    @Column(columnDefinition = "bit(1) default 0", nullable = false)
+    val isParent: Boolean,
 
     @Column(name = "receipt_code", nullable = true)
     val receiptCode: UUID?

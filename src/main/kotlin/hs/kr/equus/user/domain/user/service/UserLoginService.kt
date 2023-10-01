@@ -1,6 +1,5 @@
 package hs.kr.equus.user.domain.user.service
 
-import hs.kr.equus.user.domain.user.domain.User
 import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
