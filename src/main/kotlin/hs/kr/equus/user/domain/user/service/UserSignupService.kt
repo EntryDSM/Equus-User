@@ -12,7 +12,6 @@ import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 
 @Service
 class UserSignupService(
@@ -37,7 +36,7 @@ class UserSignupService(
             phoneNumber = passInfo.phoneNumber,
             password = password,
             name = passInfo.name,
-            isStudent = userSignupRequest.isStudent,
+            isParent = userSignupRequest.isParent,
             receiptCode = null
         )
 

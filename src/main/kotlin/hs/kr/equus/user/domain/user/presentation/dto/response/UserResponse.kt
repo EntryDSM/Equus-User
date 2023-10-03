@@ -6,6 +6,6 @@ data class UserResponse(
     val id: UUID,
     val phoneNumber: String,
     val name: String,
-    val isStudent: Boolean,
+    val isParent: Boolean,
     val receiptCode: UUID?
 )
