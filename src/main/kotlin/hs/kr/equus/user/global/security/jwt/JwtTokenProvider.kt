@@ -6,6 +6,7 @@ import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.global.exception.ExpiredTokenException
 import hs.kr.equus.user.global.exception.InvalidTokenException
+import hs.kr.equus.user.global.security.auth.AdminDetailsService
 import hs.kr.equus.user.global.security.auth.AuthDetailsService
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import io.jsonwebtoken.*
@@ -21,7 +22,8 @@ class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
     private val authDetailsService: AuthDetailsService,
     private val refreshTokenRepository: RefreshTokenRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val adminDetailsService: AdminDetailsService
 ) {
     companion object {
         private const val ACCESS_KEY = "access_token"
@@ -106,8 +108,7 @@ class JwtTokenProvider(
         return if (UserRole.USER.toString() == body["role"].toString()) {
             authDetailsService.loadUserByUsername(body.subject)
         } else {
-            // 어드민 구현 후 추가 예정
-            authDetailsService.loadUserByUsername(body.subject)
+            adminDetailsService.loadUserByUsername(body.subject)
         }
     }
 }
