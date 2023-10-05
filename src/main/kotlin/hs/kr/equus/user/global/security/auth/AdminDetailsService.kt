@@ -1,6 +1,7 @@
 package hs.kr.equus.user.global.security.auth
 
 import hs.kr.equus.user.domain.admin.domain.Admin
+import hs.kr.equus.user.domain.admin.exception.AdminUnauthorizedException
 import hs.kr.equus.user.domain.admin.facade.AdminFacade
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -11,7 +12,7 @@ class AdminDetailsService(
     private val adminFacade: AdminFacade
 ) : UserDetailsService {
     override fun loadUserByUsername(adminId: String?): UserDetails {
-        val admin: Admin? = adminId?.let { adminFacade.getUserById(it) }
-        return AuthDetails(admin!!.id)
+        val admin: Admin = adminId?.let { adminFacade.getUserById(it) } ?: throw AdminUnauthorizedException
+        return AuthDetails(admin.id)
     }
 }
