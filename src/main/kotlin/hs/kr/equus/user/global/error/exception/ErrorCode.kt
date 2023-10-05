@@ -19,6 +19,7 @@ enum class ErrorCode(
     // Not Found
     USER_NOT_FOUND(404, "User Not Found"),
     PASS_INFO_NOT_FOUND(404, "Pass Info Not Found"),
+    ADMIN_NOT_FOUND(404, "Admin Not Found"),
 
     // Conflict
     USER_ALREADY_EXISTS(409, "User Already Exists")
