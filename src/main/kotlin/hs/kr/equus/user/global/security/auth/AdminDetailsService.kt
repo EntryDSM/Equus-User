@@ -13,6 +13,6 @@ class AdminDetailsService(
 ) : UserDetailsService {
     override fun loadUserByUsername(adminId: String?): UserDetails {
         val admin: Admin = adminId?.let { adminFacade.getUserById(it) } ?: throw AdminUnauthorizedException
-        return AuthDetails(admin.id)
+        return AuthDetails(admin.adminId)
     }
 }
