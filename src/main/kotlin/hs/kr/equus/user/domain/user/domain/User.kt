@@ -4,6 +4,8 @@ import hs.kr.equus.user.domain.BaseUUIDEntity
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 
 @Entity(name = "tbl_user")
 class User(
@@ -22,7 +24,11 @@ class User(
     val isParent: Boolean,
 
     @Column(name = "receipt_code", nullable = true)
-    val receiptCode: UUID?
+    val receiptCode: UUID?,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    val role: UserRole
 ) : BaseUUIDEntity(id) {
     fun changePassword(password: String) {
         this.password = password

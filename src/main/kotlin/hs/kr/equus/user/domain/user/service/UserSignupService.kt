@@ -12,6 +12,7 @@ import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import javax.management.relation.Role
 
 @Service
 class UserSignupService(
@@ -37,14 +38,15 @@ class UserSignupService(
             password = password,
             name = passInfo.name,
             isParent = userSignupRequest.isParent,
-            receiptCode = null
+            receiptCode = null,
+            role = UserRole.USER
         )
 
         userRepository.save(user)
 
         return tokenProvider.generateToken(
             user.phoneNumber,
-            UserRole.USER.toString()
+            user.role.toString()
         )
     }
 }
