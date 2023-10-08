@@ -12,7 +12,6 @@ import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import javax.management.relation.Role
 
 @Service
 class UserSignupService(
