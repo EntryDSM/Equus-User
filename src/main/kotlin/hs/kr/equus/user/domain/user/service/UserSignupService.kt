@@ -2,8 +2,8 @@ package hs.kr.equus.user.domain.user.service
 
 import hs.kr.equus.user.domain.auth.domain.repository.PassInfoRepository
 import hs.kr.equus.user.domain.auth.exception.PassInfoNotFoundException
-import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.User
+import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.UserAlreadyExistsException
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
@@ -37,14 +37,15 @@ class UserSignupService(
             password = password,
             name = passInfo.name,
             isParent = userSignupRequest.isParent,
-            receiptCode = null
+            receiptCode = null,
+            role = UserRole.USER
         )
 
         userRepository.save(user)
 
         return tokenProvider.generateToken(
             user.phoneNumber,
-            UserRole.USER.toString()
+            user.role.toString()
         )
     }
 }
