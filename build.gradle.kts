@@ -9,6 +9,13 @@ plugins {
     kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
 }
 
+dependencyManagement {
+    imports{
+        mavenBom(Dependencies.SPRING_CLOUD)
+    }
+}
+
+
 group = "hs.kr.equus"
 version = "0.0.0"
 
@@ -59,6 +66,9 @@ dependencies {
 
     // Kafka
     implementation(Dependencies.KAFKA)
+
+    // Spring Config
+    implementation(Dependencies.CLOUD_CONFIG)
 }
 
 tasks.withType<KotlinCompile> {

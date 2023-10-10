@@ -1,39 +1,9 @@
-
-# 추후 cloud config를 사용해서 관리합니다
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${MYSQL_URL}
-    username: ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
-    hikari:
-      maxLifetime: 580000
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: ${SHOW_SQL:true}
-    properties:
-      hibernate:
-        format_sql: ${FORMAT_SQL:true}
-    open-in-view: false
-    database: mysql
-
-pass:
-  cp-cd: ${CP_CD}
-  license: ${PASS_LICENSE_PATH}
-  exp: ${PASS_EXP}
-  base-url: ${BASE_URL}
-
-auth:
-    jwt:
-        secretKey: ${JWT_SECRET_KEY:dGVzdA==}
-        accessExp: ${JWT_ACCESS_EXP:3600}
-        refreshExp: ${JWT_REFRESH_EXP:3600}
-        header: ${JWT_HEADER:Authorization}
-        prefix: ${JWT_PREFIX:Bearer}
-
-kafka:
-    serverAddress: ${KAFKA_SERVER_ADDRESS:localhost:9092}
+    config:
+        import: ${CLOUD_CONFIG_IMPORT_URL:optional:configserver:http://43.202.181.155:8888/}
+    cloud:
+        config:
+            name: user
+            profile: dev
+            import-check:
+                enabled=false
