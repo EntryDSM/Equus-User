@@ -5,5 +5,3 @@ spring:
         config:
             name: user
             profile: dev
-            import-check:
-                enabled=false
