@@ -1,6 +1,6 @@
 spring:
     config:
-        import: ${CLOUD_CONFIG_IMPORT_URL:optional:configserver:http://43.202.181.155:8888/}
+        import: "optional:configserver:${CLOUD_CONFIG_IMPORT_URL}"
     cloud:
         config:
             name: user
