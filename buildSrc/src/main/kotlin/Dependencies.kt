@@ -40,4 +40,10 @@ object Dependencies {
 
     // Kafka
     const val KAFKA = "org.springframework.kafka:spring-kafka"
+
+    // Cloud Config
+    const val CLOUD_CONFIG = "org.springframework.cloud:spring-cloud-config-client"
+
+    // cloud
+    const val SPRING_CLOUD = "org.springframework.cloud:spring-cloud-dependencies:${DependencyVersions.SPRING_CLOUD_VERSION}"
 }
