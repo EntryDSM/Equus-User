@@ -5,3 +5,9 @@ spring:
         config:
             name: user
             profile: dev
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health, refresh, busrefresh

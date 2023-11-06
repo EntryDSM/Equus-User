@@ -10,11 +10,10 @@ plugins {
 }
 
 dependencyManagement {
-    imports{
+    imports {
         mavenBom(Dependencies.SPRING_CLOUD)
     }
 }
-
 
 group = "hs.kr.equus"
 version = "0.0.0"
