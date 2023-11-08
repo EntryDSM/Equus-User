@@ -1,6 +1,5 @@
 package hs.kr.equus.user.domain.auth.service
 
-import hs.kr.equus.user.domain.auth.presentation.dto.request.PassPopupRequest
 import hs.kr.equus.user.global.exception.InternalServerErrorException
 import hs.kr.equus.user.global.utils.pass.RedirectUrlChecker
 import kcb.module.v3.OkCert
