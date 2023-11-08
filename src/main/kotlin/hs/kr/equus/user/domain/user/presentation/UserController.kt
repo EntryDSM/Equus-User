@@ -50,8 +50,8 @@ class UserController(
     @DeleteMapping
     fun withdrawal() = userWithdrawalService.execute()
 
-    @GetMapping
-    fun findUserByUUID(@RequestParam("userId") userId: UUID): UserResponse {
+    @GetMapping("/{userId}")
+    fun findUserByUUID(@PathVariable userId: UUID): UserResponse {
         return queryUserByUUIDService.execute(userId)
     }
 }
