@@ -12,6 +12,7 @@ import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserLoginService(
@@ -21,6 +22,7 @@ class UserLoginService(
     private val jwtProperties: JwtProperties,
     private val userInfoRepository: UserInfoRepository
 ) {
+    @Transactional
     fun execute(userLoginRequest: UserLoginRequest): TokenResponse {
         val user = userRepository.findByPhoneNumber(userLoginRequest.phoneNumber) ?: throw UserNotFoundException
 
