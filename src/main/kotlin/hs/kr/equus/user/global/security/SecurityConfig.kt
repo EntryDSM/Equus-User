@@ -32,7 +32,7 @@ class SecurityConfig(
             .permitAll()
             .antMatchers(HttpMethod.POST, "/user")
             .permitAll()
-            .antMatchers(HttpMethod.GET, "/user/verify/**")
+            .antMatchers(HttpMethod.POST, "/user/verify/popup")
             .permitAll()
             .antMatchers(HttpMethod.GET, "/user/verify/info")
             .permitAll()
