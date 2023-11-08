@@ -100,6 +100,7 @@ class PassPopupService(
 
             return htmlBuilder.toString()
         } catch (e: Exception) {
+            println(e.message)
             throw InternalServerErrorException
         }
     }
