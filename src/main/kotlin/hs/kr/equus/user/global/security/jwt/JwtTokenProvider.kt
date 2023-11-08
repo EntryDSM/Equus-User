@@ -30,6 +30,23 @@ class JwtTokenProvider(
         private const val REFRESH_KEY = "refresh_token"
     }
 
+    private fun getBody(token: String): Claims {
+        return try {
+            Jwts.parser().setSigningKey(jwtProperties.secretKey).parseClaimsJws(token).body
+        } catch (e: JwtException) {
+            throw InvalidTokenException
+        }
+    }
+
+    fun getSubjectWithExpiredCheck(token: String): String {
+        val body = getBody(token)
+        return if (body.expiration.before(Date())) {
+            throw ExpiredTokenException
+        } else {
+            body.subject
+        }
+    }
+
     fun reIssue(refreshToken: String): TokenResponse {
         if (!isRefreshToken(refreshToken)) {
             throw InvalidTokenException
@@ -102,7 +119,7 @@ class JwtTokenProvider(
         return REFRESH_KEY == getJws(token!!).header["typ"].toString()
     }
 
-    private fun getRole(token: String) = getJws(token).body["role"].toString()
+    fun getRole(token: String) = getJws(token).body["role"].toString()
 
     private fun getDetails(body: Claims): UserDetails {
         return if (UserRole.USER.toString() == body["role"].toString()) {
