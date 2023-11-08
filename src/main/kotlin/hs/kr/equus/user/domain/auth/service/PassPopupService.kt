@@ -38,11 +38,11 @@ class PassPopupService(
     private val rqstCausCd = "00"
 
     @Transactional
-    fun execute(passPopupRequest: PassPopupRequest): String {
+    fun execute(): String {
         redirectUrlChecker.checkRedirectUrl("http://equus-lb-95571992.ap-northeast-2.elb.amazonaws.com")
         try {
             val reqJson = JSONObject()
-            reqJson.put("RETURN_URL", passPopupRequest.redirectUrl)
+            reqJson.put("RETURN_URL", "http://equus-lb-95571992.ap-northeast-2.elb.amazonaws.com")
             reqJson.put("SITE_NAME", siteName)
             reqJson.put("SITE_URL", siteUrl)
             reqJson.put("RQST_CAUS_CD", rqstCausCd)
