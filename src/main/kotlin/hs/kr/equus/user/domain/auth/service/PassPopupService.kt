@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional
 class PassPopupService(
     private val redirectUrlChecker: RedirectUrlChecker
 ) {
-
     companion object {
         private const val TARGET = "PROD"
     }
