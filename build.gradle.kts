@@ -68,6 +68,9 @@ dependencies {
 
     // Spring Config
     implementation(Dependencies.CLOUD_CONFIG)
+
+    // Actuator
+    implementation(Dependencies.ACTUATOR)
 }
 
 tasks.withType<KotlinCompile> {
