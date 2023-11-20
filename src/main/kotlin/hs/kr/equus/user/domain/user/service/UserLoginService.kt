@@ -29,7 +29,7 @@ class UserLoginService(
         if (!passwordEncoder.matches(userLoginRequest.password, user.password)) {
             throw PasswordNotValidException
         }
-        val tokenResponse = jwtTokenProvider.generateToken(user.id.toString(), UserRole.USER.toString())
+        val tokenResponse = jwtTokenProvider.generateToken(user.id.toString(), user.role.toString())
         val userInfo = UserInfo(
             token = tokenResponse.accessToken,
             userId = jwtTokenProvider.getSubjectWithExpiredCheck(tokenResponse.accessToken),
