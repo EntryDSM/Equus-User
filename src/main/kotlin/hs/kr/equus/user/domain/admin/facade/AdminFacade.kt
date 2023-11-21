@@ -2,7 +2,7 @@ package hs.kr.equus.user.domain.admin.facade
 
 import hs.kr.equus.user.domain.admin.domain.Admin
 import hs.kr.equus.user.domain.admin.exception.AdminNotFoundException
-import hs.kr.equus.user.domain.admin.repository.AdminRepository
+import hs.kr.equus.user.domain.admin.domain.repository.AdminRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component

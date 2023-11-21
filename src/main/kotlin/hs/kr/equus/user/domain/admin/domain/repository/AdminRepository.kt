@@ -1,4 +1,4 @@
-package hs.kr.equus.user.domain.admin.repository
+package hs.kr.equus.user.domain.admin.domain.repository
 
 import hs.kr.equus.user.domain.admin.domain.Admin
 import org.springframework.data.jpa.repository.JpaRepository
