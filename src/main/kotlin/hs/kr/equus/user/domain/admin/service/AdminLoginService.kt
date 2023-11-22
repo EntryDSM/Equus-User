@@ -2,7 +2,7 @@ package hs.kr.equus.user.domain.admin.service
 
 import hs.kr.equus.user.domain.admin.exception.AdminNotFoundException
 import hs.kr.equus.user.domain.admin.presentation.dto.request.AdminLoginRequest
-import hs.kr.equus.user.domain.admin.repository.AdminRepository
+import hs.kr.equus.user.domain.admin.domain.repository.AdminRepository
 import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
 import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
