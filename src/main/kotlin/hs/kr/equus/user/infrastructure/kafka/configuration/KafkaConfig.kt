@@ -24,7 +24,6 @@ class KafkaConfig(
         return KafkaTemplate(deleteAllTableProducerFactory())
     }
 
-
     @Bean
     fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, DeleteUserEventRequest> {
         return DefaultKafkaProducerFactory(producerConfig())
