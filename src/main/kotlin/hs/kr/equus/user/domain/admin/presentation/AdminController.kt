@@ -33,6 +33,5 @@ class AdminController(
         adminTokenRefreshService.execute(refreshToken)
 
     @DeleteMapping("/auth")
-    fun deleteAllTable() =
-        deleteAllTableService.execute()
+    fun deleteAllTable() = deleteAllTableService.execute()
 }
