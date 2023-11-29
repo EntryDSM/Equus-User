@@ -10,7 +10,5 @@ class DeleteAllTableService(
 ) {
 
     @Transactional
-    fun execute(){
-        deleteAllTableProducer.send()
-    }
+    fun execute() = deleteAllTableProducer.send()
 }
