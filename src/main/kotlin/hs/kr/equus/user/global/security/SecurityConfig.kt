@@ -1,7 +1,6 @@
 package hs.kr.equus.user.global.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import hs.kr.equus.user.domain.user.domain.UserRole
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
