@@ -1,6 +1,7 @@
 package hs.kr.equus.user.global.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import hs.kr.equus.user.domain.user.domain.UserRole
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -14,6 +15,7 @@ import org.springframework.web.cors.CorsUtils
 class SecurityConfig(
     private val objectMapper: ObjectMapper
 ) {
+
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf()
@@ -44,6 +46,8 @@ class SecurityConfig(
             .permitAll()
             .antMatchers(HttpMethod.POST, "/admin/auth")
             .permitAll()
+            .antMatchers(HttpMethod.DELETE, "/admin/auth")
+            .hasRole("ADMIN")
             .antMatchers(HttpMethod.GET, "/user")
             .hasRole("ROOT")
             .anyRequest()
