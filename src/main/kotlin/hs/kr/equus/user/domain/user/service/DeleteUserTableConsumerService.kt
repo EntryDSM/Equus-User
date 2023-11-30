@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class DeleteUserTableConsumerService (
+class DeleteUserTableConsumerService(
     private val userRepository: UserRepository
-){
+) {
     @Transactional
-    @KafkaListener(topics = arrayOf(KafkaTopics.DELETE_ALL_TABLE),  groupId = "\${kafka.consumer.groupId}")
+    @KafkaListener(topics = [KafkaTopics.DELETE_ALL_TABLE], groupId = "\${kafka.consumer.groupId}")
     fun execute() = userRepository.deleteAll()
 }
