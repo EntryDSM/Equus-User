@@ -14,3 +14,4 @@ class DeleteUserTableConsumerService(
     @KafkaListener(topics = [KafkaTopics.DELETE_ALL_TABLE], groupId = "\${kafka.consumer.groupId}")
     fun execute() = userRepository.deleteAll()
 }
+
