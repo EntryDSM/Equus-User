@@ -14,6 +14,7 @@ import org.springframework.web.cors.CorsUtils
 class SecurityConfig(
     private val objectMapper: ObjectMapper
 ) {
+
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf()
@@ -44,6 +45,8 @@ class SecurityConfig(
             .permitAll()
             .antMatchers(HttpMethod.POST, "/admin/auth")
             .permitAll()
+            .antMatchers(HttpMethod.DELETE, "/admin/auth")
+            .hasRole("ADMIN")
             .antMatchers(HttpMethod.GET, "/user")
             .hasRole("ROOT")
             .anyRequest()

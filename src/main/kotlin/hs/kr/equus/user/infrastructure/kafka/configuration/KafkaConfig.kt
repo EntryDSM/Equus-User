@@ -13,6 +13,17 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 class KafkaConfig(
     private val kafkaProperty: KafkaProperty
 ) {
+
+    @Bean
+    fun deleteAllTableProducerFactory(): DefaultKafkaProducerFactory<String, Unit> {
+        return DefaultKafkaProducerFactory(producerConfig())
+    }
+
+    @Bean
+    fun deleteAllTableKafkaTemplate(): KafkaTemplate<String, Unit> {
+        return KafkaTemplate(deleteAllTableProducerFactory())
+    }
+
     @Bean
     fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, DeleteUserEventRequest> {
         return DefaultKafkaProducerFactory(producerConfig())
