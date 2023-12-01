@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
 
 @Configuration
-class KafkaConfig(
+class KafkaProducerConfig(
     private val kafkaProperty: KafkaProperty
 ) {
 
