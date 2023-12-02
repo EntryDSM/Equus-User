@@ -1,12 +1,14 @@
 package hs.kr.equus.user.infrastructure.kafka.configuration
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
+import org.apache.kafka.common.serialization.Deserializer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.annotation.EnableKafka
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
 @EnableKafka
@@ -31,7 +33,8 @@ class KafkaConsumerConfig(
             ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "false",
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to JsonDeserializer::class.java,
-            ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG to 5000
+            ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG to 5000,
+            JsonDeserializer.TRUSTED_PACKAGES to "*"
         )
     }
 }
