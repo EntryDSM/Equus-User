@@ -16,23 +16,22 @@ class KafkaConsumerConfig(
 ) {
     @Bean
     fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, String> {
-        val factory = ConcurrentKafkaListenerContainerFactory<String, String>()
-
-        factory.setConcurrency(2)
-        factory.consumerFactory = DefaultKafkaConsumerFactory(consumerFactoryConfig())
-        factory.containerProperties.pollTimeout = 500
-        return factory
+        return ConcurrentKafkaListenerContainerFactory<String, String>().apply {
+            setConcurrency(2)
+            consumerFactory = DefaultKafkaConsumerFactory(consumerFactoryConfig())
+            containerProperties.pollTimeout = 500
+        }
     }
 
     private fun consumerFactoryConfig(): Map<String, Any> {
-        val props: MutableMap<String, Any> = HashMap()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = kafkaProperty.serverAddress
-        props[ConsumerConfig.ISOLATION_LEVEL_CONFIG] = "read_committed"
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
-        props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = "false"
-        props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "latest"
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = JsonDeserializer::class.java
-        props[ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG] = 5000
-        return props
+        return mapOf(
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.serverAddress,
+            ConsumerConfig.ISOLATION_LEVEL_CONFIG to "read_committed",
+            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+            ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "false",
+            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
+            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to JsonDeserializer::class.java,
+            ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG to 5000
+        )
     }
 }
