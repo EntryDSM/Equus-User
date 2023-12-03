@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class DeleteAllTableProducerImpl(
-    private val kafkaTemplate: KafkaTemplate<String, Unit>,
-): DeleteAllTableProducer {
+    private val kafkaTemplate: KafkaTemplate<String, Unit>
+) : DeleteAllTableProducer {
     override fun send() {
         kafkaTemplate.send(KafkaTopics.DELETE_ALL_TABLE, Unit)
     }
