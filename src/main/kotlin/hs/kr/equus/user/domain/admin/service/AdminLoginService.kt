@@ -22,7 +22,7 @@ class AdminLoginService(
     fun execute(
         adminLoginRequest: AdminLoginRequest
     ): TokenResponse {
-        val admin = adminRepository.findByIdOrNull(adminLoginRequest.adminId) ?: throw AdminNotFoundException
+        val admin = adminRepository.findByAdminId(adminLoginRequest.adminId) ?: throw AdminNotFoundException
 
         if (!passwordEncoder.matches(adminLoginRequest.password, admin.password)) {
             throw PasswordNotValidException

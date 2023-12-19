@@ -14,8 +14,8 @@ class AdminFacade(
 ) {
     fun getCurrentUser(): Admin {
         val adminId = SecurityContextHolder.getContext().authentication.name
-        return adminRepository.findByIdOrNull(adminId) ?: throw AdminNotFoundException
+        return adminRepository.findByIdOrNull(UUID.fromString(adminId)) ?: throw AdminNotFoundException
     }
 
-    fun getUserById(adminId: String): Admin = adminRepository.findByIdOrNull(adminId) ?: throw AdminNotFoundException
+    fun getUserById(adminId: String): Admin = adminRepository.findByIdOrNull(UUID.fromString(adminId)) ?: throw AdminNotFoundException
 }
