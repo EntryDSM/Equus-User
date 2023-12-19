@@ -17,5 +17,6 @@ class AdminFacade(
         return adminRepository.findByIdOrNull(UUID.fromString(adminId)) ?: throw AdminNotFoundException
     }
 
-    fun getUserById(adminId: String): Admin = adminRepository.findByIdOrNull(UUID.fromString(adminId)) ?: throw AdminNotFoundException
+    fun getUserById(adminId: String): Admin =
+        adminRepository.findByIdOrNull(UUID.fromString(adminId)) ?: throw AdminNotFoundException
 }
