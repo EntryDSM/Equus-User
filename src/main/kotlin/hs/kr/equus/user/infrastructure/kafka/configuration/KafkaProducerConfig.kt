@@ -1,6 +1,5 @@
 package hs.kr.equus.user.infrastructure.kafka.configuration
 
-import hs.kr.equus.user.infrastructure.kafka.dto.DeleteUserEventRequest
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.context.annotation.Bean
@@ -8,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
+import java.util.UUID
 
 @Configuration
 class KafkaProducerConfig(
@@ -25,12 +25,12 @@ class KafkaProducerConfig(
     }
 
     @Bean
-    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, DeleteUserEventRequest> {
+    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, UUID> {
         return DefaultKafkaProducerFactory(producerConfig())
     }
 
     @Bean
-    fun deleteUserKafkaTemplate(): KafkaTemplate<String, DeleteUserEventRequest> {
+    fun deleteUserKafkaTemplate(): KafkaTemplate<String, UUID> {
         return KafkaTemplate(deleteUserProducerFactory())
     }
 
