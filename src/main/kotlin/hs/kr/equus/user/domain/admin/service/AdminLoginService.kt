@@ -38,6 +38,7 @@ class AdminLoginService(
             userRole = jwtTokenProvider.getRole(tokenResponse.accessToken),
             ttl = jwtProperties.accessExp
         )
+        userInfoRepository.save(userInfo)
         return tokenResponse
     }
 }
