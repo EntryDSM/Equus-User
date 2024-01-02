@@ -26,6 +26,6 @@ class LicenseConfig(
     }
 
     companion object {
-        private const val PATH = "equus/license/V61290000000_IDS_01_PROD_AES_license.dat"
+        private const val PATH = "./V61290000000_IDS_01_PROD_AES_license.dat"
     }
 }
