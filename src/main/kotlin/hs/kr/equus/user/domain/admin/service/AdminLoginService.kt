@@ -22,7 +22,7 @@ class AdminLoginService(
     private val userInfoRepository: UserInfoRepository,
     private val jwtProperties: JwtProperties
 ) {
-    @Transactional(readOnly = true)
+    @Transactional
     fun execute(
         adminLoginRequest: AdminLoginRequest
     ): TokenResponse {
