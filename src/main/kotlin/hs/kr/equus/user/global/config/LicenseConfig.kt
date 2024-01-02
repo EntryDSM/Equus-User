@@ -21,7 +21,7 @@ class LicenseConfig(
                     Files.copy(inputStream, Paths.get(PATH))
                 }
         } catch (e: IOException) {
-            print(e.printStackTrace())
+            e.printStackTrace()
         }
     }
 
