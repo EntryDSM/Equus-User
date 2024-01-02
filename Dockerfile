@@ -2,7 +2,6 @@ FROM openjdk:17
 ENV TZ=Asia/Seoul
 
 COPY build/libs/Equus-User-0.0.0.jar app.jar
-COPY /equus/license/V61290000000_IDS_01_PROD_AES_license.dat /rolls/license/V61290000000_IDS_01_PROD_AES_license.dat
 COPY /datadog/dd-java-agent.jar /usr/agent/dd-java-agent.jar
 
 ARG CLOUD_CONFIG_IMPORT_URL
