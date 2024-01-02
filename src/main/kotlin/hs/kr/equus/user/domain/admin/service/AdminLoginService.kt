@@ -3,8 +3,11 @@ package hs.kr.equus.user.domain.admin.service
 import hs.kr.equus.user.domain.admin.exception.AdminNotFoundException
 import hs.kr.equus.user.domain.admin.presentation.dto.request.AdminLoginRequest
 import hs.kr.equus.user.domain.admin.domain.repository.AdminRepository
+import hs.kr.equus.user.domain.user.domain.UserInfo
 import hs.kr.equus.user.domain.user.domain.UserRole
+import hs.kr.equus.user.domain.user.domain.repository.UserInfoRepository
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
+import hs.kr.equus.user.global.security.jwt.JwtProperties
 import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -15,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional
 class AdminLoginService(
     private val adminRepository: AdminRepository,
     private val passwordEncoder: PasswordEncoder,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val userInfoRepository: UserInfoRepository,
+    private val jwtProperties: JwtProperties
 ) {
     @Transactional(readOnly = true)
     fun execute(
@@ -26,7 +31,13 @@ class AdminLoginService(
         if (!passwordEncoder.matches(adminLoginRequest.password, admin.password)) {
             throw PasswordNotValidException
         }
-
-        return jwtTokenProvider.generateToken(admin.adminId, UserRole.ADMIN.toString())
+        val tokenResponse = jwtTokenProvider.generateToken(admin.adminId, UserRole.ADMIN.toString())
+        val userInfo = UserInfo(
+            token = tokenResponse.accessToken,
+            userId = jwtTokenProvider.getSubjectWithExpiredCheck(tokenResponse.accessToken),
+            userRole = jwtTokenProvider.getRole(tokenResponse.accessToken),
+            ttl = jwtProperties.accessExp
+        )
+        return tokenResponse
     }
 }
