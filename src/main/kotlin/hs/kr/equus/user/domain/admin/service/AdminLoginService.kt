@@ -31,7 +31,7 @@ class AdminLoginService(
         if (!passwordEncoder.matches(adminLoginRequest.password, admin.password)) {
             throw PasswordNotValidException
         }
-        val tokenResponse = jwtTokenProvider.generateToken(admin.adminId, UserRole.ADMIN.toString())
+        val tokenResponse = jwtTokenProvider.generateToken(admin.id.toString(), UserRole.ADMIN.toString())
         val userInfo = UserInfo(
             token = tokenResponse.accessToken,
             userId = jwtTokenProvider.getSubjectWithExpiredCheck(tokenResponse.accessToken),
