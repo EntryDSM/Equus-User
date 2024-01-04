@@ -11,8 +11,8 @@ class DeleteUserProducerImpl(
     private val kafkaTemplate: KafkaTemplate<String, String>,
     private val objectMapper: ObjectMapper
 ) : DeleteUserProducer {
-    override fun send(userId: UUID?) {
-        val id = objectMapper.writeValueAsString(userId)
-        kafkaTemplate.send(KafkaTopics.DELETE_USER, id)
+    override fun send(message: UUID?) {
+        val userId = objectMapper.writeValueAsString(message)
+        kafkaTemplate.send(KafkaTopics.DELETE_USER, userId)
     }
 }
