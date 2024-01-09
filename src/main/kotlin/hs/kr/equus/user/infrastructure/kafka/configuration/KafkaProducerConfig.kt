@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
+import java.util.UUID
 
 @Configuration
 class KafkaProducerConfig(
@@ -24,12 +25,12 @@ class KafkaProducerConfig(
     }
 
     @Bean
-    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, String> {
+    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, UUID> {
         return DefaultKafkaProducerFactory(producerConfig())
     }
 
     @Bean
-    fun deleteUserKafkaTemplate(): KafkaTemplate<String, String> {
+    fun deleteUserKafkaTemplate(): KafkaTemplate<String, UUID> {
         return KafkaTemplate(deleteUserProducerFactory())
     }
 
