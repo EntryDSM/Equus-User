@@ -16,6 +16,6 @@ class UserWithdrawalService(
     fun execute() {
         val user = userFacade.getCurrentUser()
         userRepository.deleteById(user.id)
-        deleteUserProducer.send(user.id)
+        deleteUserProducer.send(user.id!!)
     }
 }
