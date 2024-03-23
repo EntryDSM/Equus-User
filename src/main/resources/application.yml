@@ -1,0 +1,16 @@
+spring:
+    config:
+        import: "optional:configserver:${CLOUD_CONFIG_IMPORT_URL}"
+    cloud:
+        config:
+            name: user
+            profile: ${USER_PROFILE}
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health, refresh, busrefresh
+            base-path: /
+            path-mapping:
+              health: /
