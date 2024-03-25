@@ -71,6 +71,10 @@ dependencies {
 
     // Actuator
     implementation(Dependencies.ACTUATOR)
+
+    // Open API
+    implementation(Dependencies.OPEN_API)
+
 }
 
 tasks.withType<KotlinCompile> {

@@ -7,4 +7,5 @@ object DependencyVersions {
     const val SENTRY_VERSION = "6.2.1"
     const val JSON_VERSION = "20200518"
     const val JWT_VERSION = "0.9.1"
+    const val OPEN_API_VERSION = "2.1.0"
 }

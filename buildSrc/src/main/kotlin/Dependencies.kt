@@ -49,4 +49,7 @@ object Dependencies {
 
     // Actuator
     const val ACTUATOR = "org.springframework.boot:spring-boot-starter-actuator"
+
+    // Open API
+    const val OPEN_API = "org.springdoc:springdoc-openapi-starter-webmvc-ui:${DependencyVersions.OPEN_API_VERSION}"
 }
