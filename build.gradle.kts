@@ -8,7 +8,6 @@ plugins {
     kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN_VERSION
     kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
     id("com.epages.restdocs-api-spec") version "0.15.3"
-    id("org.hidetake.swagger.generator") version "2.18.2"
 }
 
 dependencyManagement {
