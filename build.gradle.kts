@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version PluginVersions.JVM_VERSION
     kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN_VERSION
     kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
-    id("com.epages.restdocs-api-spec") version "0.15.3"
+    id("com.epages.restdocs-api-spec") version "0.19.2"
 }
 
 dependencyManagement {
@@ -98,4 +98,11 @@ openapi3 {
     description = "Equus User API Description"
     version = "0.1.0"
     format = "yaml"
+}
+
+tasks.register<Copy>("copyOasToSwagger") {
+    delete("src/main/resources/static/swagger-ui/openapi3.yaml")
+    from("$buildDir/api-spec/openapi3.yaml")
+    into("src/main/resources/static/swagger-ui/.")
+    dependsOn("openapi3")
 }
