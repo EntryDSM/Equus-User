@@ -50,6 +50,12 @@ object Dependencies {
     // Actuator
     const val ACTUATOR = "org.springframework.boot:spring-boot-starter-actuator"
 
-    // Open API
-//    const val OPEN_API = "org.springdoc:springdoc-openapi-starter-webmvc-ui:${DependencyVersions.OPEN_API_VERSION}"
+    // restdocs
+    const val MOCK_BEAN = "org.springframework.restdocs:spring-restdocs-mockmvc"
+
+    // api-spec
+    const val API_SPEC = "com.epages:restdocs-api-spec-mockmvc:${DependencyVersions.API_SPEC}"
+
+    // swagger-ui
+    const val SWAGGER_UI = "org.webjars:swagger-ui:${DependencyVersions.SWAGGER_UI}"
 }

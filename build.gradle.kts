@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version PluginVersions.JVM_VERSION
     kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN_VERSION
     kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN_VERSION
-    id("com.epages.restdocs-api-spec") version "0.19.2"
+    id("com.epages.restdocs-api-spec") version PluginVersions.API_SPEC
 }
 
 dependencyManagement {
@@ -73,12 +73,9 @@ dependencies {
     // Actuator
     implementation(Dependencies.ACTUATOR)
 
-    // Open API
-    implementation(Dependencies.OPEN_API)
-
-    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-    testImplementation("com.epages:restdocs-api-spec-mockmvc:0.15.3")
-    implementation("org.webjars:swagger-ui:4.11.1")
+    testImplementation(Dependencies.MOCK_BEAN)
+    testImplementation(Dependencies.API_SPEC)
+    implementation(Dependencies.SWAGGER_UI)
 }
 
 tasks.withType<KotlinCompile> {
