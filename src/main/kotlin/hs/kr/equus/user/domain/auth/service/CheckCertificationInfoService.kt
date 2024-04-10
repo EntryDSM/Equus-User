@@ -21,7 +21,7 @@ class CheckCertificationInfoService(
             throw CertificationInfoUnAuthorizeException
         }
 
-        certificationInfo.isValid = true
+        certificationInfo.confirmCertification()
         certificationInfoRepository.save(certificationInfo)
     }
 }

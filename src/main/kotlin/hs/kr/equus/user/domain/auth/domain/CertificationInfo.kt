@@ -15,4 +15,8 @@ class CertificationInfo(
 
     @TimeToLive
     var ttl: Long
-)
+) {
+    fun confirmCertification() {
+        this.isValid = true
+    }
+}
