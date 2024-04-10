@@ -1,6 +1,5 @@
 package hs.kr.equus.user.global.utils.sms
 
-import hs.kr.equus.user.domain.auth.exception.SMSBadRequestException
 import hs.kr.equus.user.global.property.SmsProperties
 import net.nurigo.sdk.message.model.Message
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest
