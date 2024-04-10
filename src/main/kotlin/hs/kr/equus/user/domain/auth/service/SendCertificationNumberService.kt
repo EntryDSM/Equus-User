@@ -9,8 +9,10 @@ import hs.kr.equus.user.global.utils.sms.SMSUtil
 import net.nurigo.sdk.message.model.Message
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest
 import net.nurigo.sdk.message.service.DefaultMessageService
+import org.apache.http.client.HttpResponseException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.io.IOException
 
 @Transactional
 @Service
@@ -19,7 +21,15 @@ class SendCertificationNumberService(
     private val certificationInfoRepository: CertificationInfoRepository
 ) {
     fun execute(phoneNumber: String) {
-        val certificationNumber = smsUtil.sendCertificationMessage(phoneNumber)
+        val certificationNumber: Int
+
+        try {
+            certificationNumber = smsUtil.sendCertificationMessage(phoneNumber)
+        } catch (e: IOException) {
+            throw InvalidSMSConnectException
+        } catch (e: HttpResponseException) {
+            throw SMSBadRequestException
+        }
 
         certificationInfoRepository.save(
             CertificationInfo(
