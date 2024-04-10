@@ -28,7 +28,7 @@ class ChangePasswordService(
             throw CertificationInfoUnAuthorizeException
         }
         userRepository.findByPhoneNumber(phoneNumber)
-            ?.changePassword(passwordEncoder.encode(changePasswordRequest.newPassword))
+            ?.updatePassword(passwordEncoder.encode(changePasswordRequest.newPassword))
             ?: throw UserNotFoundException
     }
 }
