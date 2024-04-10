@@ -17,5 +17,7 @@ data class UserSignupRequest(
     val password: String,
 
     @NotNull
-    val isParent: Boolean
+    val isParent: Boolean,
+
+    val name: String
 )

@@ -9,4 +9,5 @@ object DependencyVersions {
     const val JWT_VERSION = "0.9.1"
     const val API_SPEC = "0.15.3"
     const val SWAGGER_UI = "4.11.1"
+    const val COOL_SMS = "4.2.7"
 }

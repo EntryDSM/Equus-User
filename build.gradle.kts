@@ -76,6 +76,8 @@ dependencies {
     testImplementation(Dependencies.MOCK_BEAN)
     testImplementation(Dependencies.API_SPEC)
     implementation(Dependencies.SWAGGER_UI)
+
+    implementation(Dependencies.COOL_SMS)
 }
 
 tasks.withType<KotlinCompile> {

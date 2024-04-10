@@ -1,4 +1,4 @@
-package hs.kr.equus.user.global.config
+package hs.kr.equus.user.global.config.swagger
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry

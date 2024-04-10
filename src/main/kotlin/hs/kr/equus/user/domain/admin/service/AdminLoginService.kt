@@ -7,7 +7,7 @@ import hs.kr.equus.user.domain.user.domain.UserInfo
 import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserInfoRepository
 import hs.kr.equus.user.domain.user.exception.PasswordNotValidException
-import hs.kr.equus.user.global.security.jwt.JwtProperties
+import hs.kr.equus.user.global.property.JwtProperties
 import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
 import org.springframework.security.crypto.password.PasswordEncoder

@@ -1,4 +1,4 @@
-package hs.kr.equus.user.global.security.jwt
+package hs.kr.equus.user.global.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

@@ -6,6 +6,7 @@ import hs.kr.equus.user.domain.user.domain.UserRole
 import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.global.exception.ExpiredTokenException
 import hs.kr.equus.user.global.exception.InvalidTokenException
+import hs.kr.equus.user.global.property.JwtProperties
 import hs.kr.equus.user.global.security.auth.AdminDetailsService
 import hs.kr.equus.user.global.security.auth.AuthDetailsService
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse

@@ -58,4 +58,7 @@ object Dependencies {
 
     // swagger-ui
     const val SWAGGER_UI = "org.webjars:swagger-ui:${DependencyVersions.SWAGGER_UI}"
+
+    // cool-sms
+    const val COOL_SMS = "net.nurigo:sdk:${DependencyVersions.COOL_SMS}"
 }
