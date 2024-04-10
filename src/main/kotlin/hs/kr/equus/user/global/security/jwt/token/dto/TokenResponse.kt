@@ -1,4 +1,4 @@
-package hs.kr.equus.user.global.utils.token.dto
+package hs.kr.equus.user.global.security.jwt.token.dto
 
 data class TokenResponse(
     val accessToken: String,

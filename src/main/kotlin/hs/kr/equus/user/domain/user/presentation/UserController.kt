@@ -5,7 +5,7 @@ import hs.kr.equus.user.domain.user.presentation.dto.request.UserLoginRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
 import hs.kr.equus.user.domain.user.presentation.dto.response.UserResponse
 import hs.kr.equus.user.domain.user.service.*
-import hs.kr.equus.user.global.utils.token.dto.TokenResponse
+import hs.kr.equus.user.global.security.jwt.token.dto.TokenResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.util.*

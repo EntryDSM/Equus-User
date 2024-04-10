@@ -9,7 +9,7 @@ import hs.kr.equus.user.domain.user.domain.repository.UserRepository
 import hs.kr.equus.user.domain.user.exception.UserAlreadyExistsException
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
 import hs.kr.equus.user.global.security.jwt.JwtTokenProvider
-import hs.kr.equus.user.global.utils.token.dto.TokenResponse
+import hs.kr.equus.user.global.security.jwt.token.dto.TokenResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service

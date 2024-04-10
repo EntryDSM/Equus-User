@@ -15,25 +15,11 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Service
 class SendCertificationNumberService(
-    private val messageService: DefaultMessageService,
-    private val smsProperties: SmsProperties,
+    private val smsUtil: SMSUtil,
     private val certificationInfoRepository: CertificationInfoRepository
 ) {
     fun execute(phoneNumber: String) {
-        val certificationNumber = SMSUtil.createRandomCertificationNumber()
-
-        val message = Message(
-            from = smsProperties.callerId,
-            to = phoneNumber,
-            text = SMSUtil.createCertificationMessage(certificationNumber)
-        )
-
-        val response = messageService.sendOne(SingleMessageSendingRequest(message))
-            ?: throw InvalidSMSConnectException
-
-        if (response.statusCode.toInt() in 400..500) {
-            throw SMSBadRequestException
-        }
+        val certificationNumber = smsUtil.sendCertificationMessage(phoneNumber)
 
         certificationInfoRepository.save(
             CertificationInfo(

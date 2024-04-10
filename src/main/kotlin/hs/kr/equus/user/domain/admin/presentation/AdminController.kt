@@ -4,7 +4,7 @@ import hs.kr.equus.user.domain.admin.presentation.dto.request.AdminLoginRequest
 import hs.kr.equus.user.domain.admin.service.AdminLoginService
 import hs.kr.equus.user.domain.admin.service.AdminTokenRefreshService
 import hs.kr.equus.user.domain.admin.service.DeleteAllTableService
-import hs.kr.equus.user.global.utils.token.dto.TokenResponse
+import hs.kr.equus.user.global.security.jwt.token.dto.TokenResponse
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
