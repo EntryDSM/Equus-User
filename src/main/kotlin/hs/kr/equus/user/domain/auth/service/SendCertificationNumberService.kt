@@ -17,15 +17,7 @@ class SendCertificationNumberService(
     private val certificationInfoRepository: CertificationInfoRepository
 ) {
     fun execute(phoneNumber: String) {
-        val certificationNumber: Int
-
-        try {
-            certificationNumber = smsUtil.sendCertificationMessage(phoneNumber)
-        } catch (e: IOException) {
-            throw InvalidSMSConnectException
-        } catch (e: HttpResponseException) {
-            throw SMSBadRequestException
-        }
+        val certificationNumber: Int = smsUtil.sendCertificationMessage(phoneNumber)
 
         certificationInfoRepository.save(
             CertificationInfo(

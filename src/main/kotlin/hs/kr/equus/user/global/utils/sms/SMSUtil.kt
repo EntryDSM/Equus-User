@@ -1,5 +1,7 @@
 package hs.kr.equus.user.global.utils.sms
 
+import hs.kr.equus.user.domain.auth.exception.InvalidSMSConnectException
+import hs.kr.equus.user.domain.auth.exception.SMSBadRequestException
 import hs.kr.equus.user.global.property.SmsProperties
 import net.nurigo.sdk.message.model.Message
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest
@@ -24,10 +26,10 @@ class SMSUtil(
         )
 
         val response = messageService.sendOne(SingleMessageSendingRequest(message))
-            ?: throw IOException("SMS 서비스 연결 실패")
+            ?: throw InvalidSMSConnectException
 
         if (response.statusCode.toInt() in 400..500) {
-            throw HttpResponseException(response.statusCode.toInt(), "잘못된 요청 또는 서버 오류")
+            throw SMSBadRequestException
         }
 
         return certificationNumber
