@@ -4,7 +4,7 @@ spring:
     cloud:
         config:
             name: user
-            profile: ${USER_PROFILE:local-hyunsu}
+            profile: ${USER_PROFILE}
 
 management:
     endpoints:
