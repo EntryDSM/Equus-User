@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 class QueryUserInfoService(
     private val userFacade: UserFacade
 ) {
-    fun execute(): UserResponse{
+    fun execute(): UserResponse {
         val user = userFacade.getCurrentUser()
 
         return user.run {
