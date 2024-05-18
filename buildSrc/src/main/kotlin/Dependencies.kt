@@ -41,9 +41,6 @@ object Dependencies {
     // Kafka
     const val KAFKA = "org.springframework.kafka:spring-kafka"
 
-    // Confluent
-    const val CONFLUENT = "io.confluent:kafka-avro-serializer:7.0.1"
-
     // Cloud Config
     const val CLOUD_CONFIG = "org.springframework.cloud:spring-cloud-config-client"
 

@@ -67,9 +67,6 @@ dependencies {
     // Kafka
     implementation(Dependencies.KAFKA)
 
-    // Confluent
-    implementation(Dependencies.CONFLUENT)
-
     // Spring Config
     implementation(Dependencies.CLOUD_CONFIG)
 
