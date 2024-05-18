@@ -42,7 +42,9 @@ class KafkaProducerConfig(
             "security.protocol" to "SASL_SSL",
             "sasl.mechanism" to "PLAIN",
             "sasl.jaas.config" to
-                "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"${kafkaProperty.confluentApiKey}\" password=\"${kafkaProperty.confluentApiSecret}\";"
+                "org.apache.kafka.common.security.plain.PlainLoginModule required " +
+                "username=\"${kafkaProperty.confluentApiKey}\" " +
+                "password=\"${kafkaProperty.confluentApiSecret}\";"
         )
     }
 }
