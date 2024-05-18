@@ -32,7 +32,10 @@ class KafkaConsumerConfig(
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to JsonDeserializer::class.java,
             ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG to 5000,
-            JsonDeserializer.TRUSTED_PACKAGES to "*"
+            JsonDeserializer.TRUSTED_PACKAGES to "*",
+            "security.protocol" to "SASL_SSL",
+            "sasl.mechanism" to "PLAIN",
+            "sasl.jaas.config" to "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"CWH5PHOI5J52PUK3\" password=\"Qi+zZeM0pmeH9RhuPM3vScrdPzNWdoGweipS7PlFxca6h/UPq5mQSl3EqyjsKhG+\";"
         )
     }
 }

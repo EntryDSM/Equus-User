@@ -1,4 +1,6 @@
 spring:
+    kafka:
+      c
     config:
         import: "optional:configserver:${CLOUD_CONFIG_IMPORT_URL}"
     cloud:
@@ -14,3 +16,8 @@ management:
             base-path: /
             path-mapping:
               health: /
+logging:
+    level:
+        org.springframework.cloud.gateway: DEBUG
+        org.springframework.http.server.reactive: DEBUG
+        org.springframework.web.server: DEBUG

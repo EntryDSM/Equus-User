@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonSerializer
-import java.util.UUID
+import java.util.*
 
 @Configuration
 class KafkaProducerConfig(
@@ -34,11 +34,15 @@ class KafkaProducerConfig(
         return KafkaTemplate(deleteUserProducerFactory())
     }
 
-    private fun producerConfig(): MutableMap<String, Any> {
-        val configs: MutableMap<String, Any> = HashMap<String, Any>()
-        configs[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = kafkaProperty.serverAddress
-        configs[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-        configs[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = JsonSerializer::class.java
-        return configs
+    private fun producerConfig(): Map<String, Any> {
+        return mapOf(
+            ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.serverAddress,
+            ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
+            ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class.java,
+            "security.protocol" to "SASL_SSL",
+            "sasl.mechanism" to "PLAIN",
+            "sasl.jaas.config" to
+                "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"${kafkaProperty.confluentApiKey}\" password=\"${kafkaProperty.confluentApiSecret}\";"
+        )
     }
 }
