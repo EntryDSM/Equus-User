@@ -16,7 +16,7 @@ class QueryUserInfoService(
         return user.run {
             UserResponse(
                 name = name,
-                telephoneNumber = phoneNumber,
+                phoneNumber = phoneNumber,
                 isParent = isParent
             )
         }
