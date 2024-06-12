@@ -20,7 +20,6 @@ class UserFacade(
         } catch (e: IllegalArgumentException) {
             throw InvalidTokenException
         }
-
     }
 
     fun getUserByPhoneNumber(phoneNumber: String): User =
