@@ -2,6 +2,4 @@ config:
     name: equus-user
     service_type: be
     port: 8080
-    domain:
-        prod: equus-user.xquare.app
-        stag: equus-user-stag.xquare.app
+    prefix: /equus-user
