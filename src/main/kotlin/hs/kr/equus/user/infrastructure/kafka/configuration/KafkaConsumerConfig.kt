@@ -33,10 +33,10 @@ class KafkaConsumerConfig(
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to JsonDeserializer::class.java,
             ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG to 5000,
             JsonDeserializer.TRUSTED_PACKAGES to "*",
-            "security.protocol" to "SASL_SSL",
-            "sasl.mechanism" to "PLAIN",
+            "security.protocol" to "SASL_PLAINTEXT",
+            "sasl.mechanism" to "SCRAM-SHA-512",
             "sasl.jaas.config" to
-                "org.apache.kafka.common.security.plain.PlainLoginModule required " +
+                "org.apache.kafka.common.security.scram.ScramLoginModule required " +
                 "username=\"${kafkaProperty.confluentApiKey}\" " +
                 "password=\"${kafkaProperty.confluentApiSecret}\";"
         )
