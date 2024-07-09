@@ -39,10 +39,10 @@ class KafkaProducerConfig(
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperty.serverAddress,
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JsonSerializer::class.java,
-            "security.protocol" to "SASL_SSL",
-            "sasl.mechanism" to "PLAIN",
+            "security.protocol" to "SASL_PLAINTEXT",
+            "sasl.mechanism" to "SCRAM-SHA-512",
             "sasl.jaas.config" to
-                "org.apache.kafka.common.security.plain.PlainLoginModule required " +
+                "org.apache.kafka.common.security.scram.ScramLoginModule required " +
                 "username=\"${kafkaProperty.confluentApiKey}\" " +
                 "password=\"${kafkaProperty.confluentApiSecret}\";"
         )
