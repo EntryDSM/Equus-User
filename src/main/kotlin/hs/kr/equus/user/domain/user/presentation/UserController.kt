@@ -3,6 +3,7 @@ package hs.kr.equus.user.domain.user.presentation
 import hs.kr.equus.user.domain.user.presentation.dto.request.ChangePasswordRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserLoginRequest
 import hs.kr.equus.user.domain.user.presentation.dto.request.UserSignupRequest
+import hs.kr.equus.user.domain.user.presentation.dto.response.InternalUserResponse
 import hs.kr.equus.user.domain.user.presentation.dto.response.UserResponse
 import hs.kr.equus.user.domain.user.service.*
 import hs.kr.equus.user.global.utils.token.dto.TokenResponse
@@ -19,7 +20,8 @@ class UserController(
     private val changePasswordService: ChangePasswordService,
     private val userTokenRefreshService: UserTokenRefreshService,
     private val userWithdrawalService: UserWithdrawalService,
-    private val queryUserByUUIDService: QueryUserByUUIDService
+    private val queryUserByUUIDService: QueryUserByUUIDService,
+    private val queryUserInfoService: QueryUserInfoService
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,7 +53,10 @@ class UserController(
     fun withdrawal() = userWithdrawalService.execute()
 
     @GetMapping("/{userId}")
-    fun findUserByUUID(@PathVariable userId: UUID): UserResponse {
+    fun findUserByUUID(@PathVariable userId: UUID): InternalUserResponse {
         return queryUserByUUIDService.execute(userId)
     }
+
+    @GetMapping("/info")
+    fun getUserInfo(): UserResponse = queryUserInfoService.execute()
 }
