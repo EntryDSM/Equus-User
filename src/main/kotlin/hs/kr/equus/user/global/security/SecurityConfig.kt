@@ -28,6 +28,8 @@ class SecurityConfig(
         http.authorizeRequests()
             .antMatchers("/")
             .permitAll()
+            .antMatchers(HttpMethod.PATCH, "/user/password")
+            .permitAll()
             .antMatchers(HttpMethod.OPTIONS, "/**")
             .permitAll()
             .antMatchers(HttpMethod.POST, "/user")
