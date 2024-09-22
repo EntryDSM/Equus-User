@@ -30,6 +30,7 @@ class User(
     @Column(name = "role", nullable = false)
     val role: UserRole
 ) : BaseUUIDEntity(id) {
+    
     fun changePassword(password: String) {
         this.password = password
     }

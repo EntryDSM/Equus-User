@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.web.cors.CorsUtils
 
 @Configuration
 class SecurityConfig(
@@ -27,9 +26,9 @@ class SecurityConfig(
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         http.authorizeRequests()
-            .requestMatchers(CorsUtils::isCorsRequest)
-            .permitAll()
             .antMatchers("/")
+            .permitAll()
+            .antMatchers(HttpMethod.PATCH, "/user/password")
             .permitAll()
             .antMatchers(HttpMethod.OPTIONS, "/**")
             .permitAll()
@@ -48,6 +47,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.DELETE, "/admin/auth")
             .hasRole("ADMIN")
             .antMatchers(HttpMethod.GET, "/user")
+            .hasRole("ROOT")
+            .antMatchers(HttpMethod.GET, "/admin/")
             .hasRole("ROOT")
             .anyRequest()
             .authenticated()
