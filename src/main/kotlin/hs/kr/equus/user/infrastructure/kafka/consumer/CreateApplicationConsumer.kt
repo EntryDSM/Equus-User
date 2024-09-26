@@ -14,7 +14,7 @@ class CreateApplicationConsumer(
 ) {
     @KafkaListener(
         topics = [KafkaTopics.CREATE_APPLICATION],
-        groupId = "change-user-receipt-code",
+        groupId = "change-user-receipt-code-consumer",
         containerFactory = "kafkaListenerContainerFactory"
     )
     fun execute(message: String) {
