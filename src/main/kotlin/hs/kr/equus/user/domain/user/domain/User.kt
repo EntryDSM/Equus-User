@@ -24,14 +24,18 @@ class User(
     val isParent: Boolean,
 
     @Column(name = "receipt_code", nullable = true)
-    val receiptCode: UUID?,
+    var receiptCode: Long?,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     val role: UserRole
 ) : BaseUUIDEntity(id) {
-    
+
     fun changePassword(password: String) {
         this.password = password
+    }
+
+    fun changeReceiptCode(receiptCode: Long) {
+        this.receiptCode = receiptCode
     }
 }
