@@ -13,7 +13,7 @@ class CreateApplicationConsumer(
     private val mapper: ObjectMapper,
 ) {
     @KafkaListener(
-        topics = [KafkaTopics.DELETE_USER],
+        topics = [KafkaTopics.CREATE_APPLICATION],
         groupId = "change-user-receipt-code",
         containerFactory = "kafkaListenerContainerFactory"
     )
