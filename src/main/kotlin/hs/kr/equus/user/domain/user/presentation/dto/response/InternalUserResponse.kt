@@ -8,6 +8,6 @@ data class InternalUserResponse(
     val phoneNumber: String,
     val name: String,
     val isParent: Boolean,
-    val receiptCode: UUID?,
+    val receiptCode: Long?,
     val role: UserRole
 )

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class CreateApplicationConsumer(
     private val changeReceiptCodeService: ChangeReceiptCodeService,
-    private val mapper: ObjectMapper,
+    private val mapper: ObjectMapper
 ) {
     @KafkaListener(
         topics = [KafkaTopics.CREATE_APPLICATION],
