@@ -1,3 +1,8 @@
 package hs.kr.equus.user.infrastructure.kafka.consumer.dto
 
-data class CreateApplicationEvent()
+import java.util.*
+
+data class CreateApplicationEvent(
+    val receiptCode: Long,
+    val userId: UUID
+)
