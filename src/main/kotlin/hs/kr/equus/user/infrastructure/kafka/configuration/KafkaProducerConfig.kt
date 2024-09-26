@@ -25,12 +25,12 @@ class KafkaProducerConfig(
     }
 
     @Bean
-    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, UUID> {
+    fun deleteUserProducerFactory(): DefaultKafkaProducerFactory<String, Long> {
         return DefaultKafkaProducerFactory(producerConfig())
     }
 
     @Bean
-    fun deleteUserKafkaTemplate(): KafkaTemplate<String, UUID> {
+    fun deleteUserKafkaTemplate(): KafkaTemplate<String, Long> {
         return KafkaTemplate(deleteUserProducerFactory())
     }
 
