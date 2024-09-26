@@ -7,9 +7,9 @@ import java.util.*
 
 @Service
 class DeleteUserProducerImpl(
-    private val kafkaTemplate: KafkaTemplate<String, UUID>
+    private val kafkaTemplate: KafkaTemplate<String, Long>
 ) : DeleteUserProducer {
-    override fun send(userId: UUID) {
-        kafkaTemplate.send(KafkaTopics.DELETE_USER, userId)
+    override fun send(receiptCode: Long) {
+        kafkaTemplate.send(KafkaTopics.DELETE_USER, receiptCode)
     }
 }
