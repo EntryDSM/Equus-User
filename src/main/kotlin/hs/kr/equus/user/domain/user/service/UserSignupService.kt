@@ -44,7 +44,7 @@ class UserSignupService(
         userRepository.save(user)
 
         return tokenProvider.generateToken(
-            user.phoneNumber,
+            user.id.toString(),
             user.role.toString()
         )
     }
