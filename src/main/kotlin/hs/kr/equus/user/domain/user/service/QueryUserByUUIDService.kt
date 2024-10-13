@@ -18,7 +18,7 @@ class QueryUserByUUIDService(
     fun execute(userId: UUID): InternalUserResponse {
         val user = userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException
         if (!userCacheRepository.existsById(userId)) {
-            userCacheRepository.save(user.mapper())
+            userCacheRepository.save(user.toUserCache())
         }
         return InternalUserResponse(
             id = user.id!!,
