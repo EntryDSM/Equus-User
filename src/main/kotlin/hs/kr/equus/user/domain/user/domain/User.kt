@@ -39,7 +39,7 @@ class User(
         this.receiptCode = receiptCode
     }
 
-    fun mapper(): UserCache {
+    fun toUserCache(): UserCache {
         return UserCache(
             id = id,
             phoneNumber = phoneNumber,
