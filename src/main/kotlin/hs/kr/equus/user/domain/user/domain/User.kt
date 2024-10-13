@@ -38,4 +38,16 @@ class User(
     fun changeReceiptCode(receiptCode: Long) {
         this.receiptCode = receiptCode
     }
+
+    fun mapper(): UserCache {
+        return UserCache(
+            id = id,
+            phoneNumber = phoneNumber,
+            name = name,
+            isParent = isParent,
+            receiptCode = receiptCode,
+            role = role,
+            ttl = 60*10
+        )
+    }
 }
