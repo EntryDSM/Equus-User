@@ -73,6 +73,9 @@ dependencies {
     // Actuator
     implementation(Dependencies.ACTUATOR)
 
+    // Cache
+    implementation("org.springframework.boot:spring-boot-starter-cache")
+
     testImplementation(Dependencies.MOCK_BEAN)
     testImplementation(Dependencies.API_SPEC)
     implementation(Dependencies.SWAGGER_UI)

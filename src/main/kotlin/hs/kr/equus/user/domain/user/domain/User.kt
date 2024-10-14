@@ -47,7 +47,7 @@ class User(
             isParent = isParent,
             receiptCode = receiptCode,
             role = role,
-            ttl = 60*10
+            ttl = 60 * 10
         )
     }
 }
