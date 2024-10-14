@@ -6,7 +6,7 @@ import org.springframework.data.redis.core.TimeToLive
 import java.util.*
 
 @RedisHash(value = "user_cache")
-data class UserCache (
+data class UserCache(
     @Id
     val id: UUID?,
     val phoneNumber: String,

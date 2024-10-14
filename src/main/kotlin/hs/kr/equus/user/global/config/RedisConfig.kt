@@ -15,7 +15,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer
 @Configuration
 class RedisConfig {
     @Bean
-    fun redisTemplate(connectionFactory: RedisConnectionFactory, objectMapper: ObjectMapper): RedisTemplate<String, Any> {
+    fun redisTemplate(
+        connectionFactory: RedisConnectionFactory,
+        objectMapper: ObjectMapper
+    ): RedisTemplate<String, Any> {
         val template = RedisTemplate<String, Any>()
         template.setConnectionFactory(connectionFactory)
         template.keySerializer = StringRedisSerializer()
@@ -29,7 +32,11 @@ class RedisConfig {
     fun objectMapper(): ObjectMapper {
         val mapper = ObjectMapper()
         mapper.registerModule(KotlinModule())
-        mapper.activateDefaultTyping(LaissezFaireSubTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY)
+        mapper.activateDefaultTyping(
+            LaissezFaireSubTypeValidator(),
+            ObjectMapper.DefaultTyping.NON_FINAL,
+            JsonTypeInfo.As.PROPERTY
+        )
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         return mapper
     }
